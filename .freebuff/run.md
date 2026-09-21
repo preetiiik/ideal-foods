@@ -10,7 +10,7 @@ React + TS + Vite + Tailwind 4 site for IDEAL (since 1972). The site OPENS with 
 
 - **Dependencies:** install with the pinned package manager — pnpm 10 (`packageManager` field in `package.json`): `pnpm install`. (This checkout currently has a working `node_modules` from npm; either manager works, but re-install from scratch with pnpm.)
 - **Env files:** `.env` lives in the repo root of this workspace. If running from a different worktree/checkout, COPY `.env` from the main checkout at `C:\Users\lenovo\Downloads\ideal-food-products-0a2` (never symlink — paths/ports may differ per worktree). Do not commit or paste its values here.
-- **SMTP dummies:** `.env.local` (gitignored) holds dummy `SMTP_*` credentials for the contact/enquiry email alerts — replace with real ones (e.g. Gmail app password) to actually send. With dummies the API still works: submissions are validated, logged, and acknowledged with `delivered: "log"`.
+- **SMTP credentials:** `.env.local` (gitignored) holds `EMAIL_USER`, `EMAIL_PASSWORD` (Gmail app password), `RECEIVER_EMAIL` for the contact/enquiry email alerts. Missing vars = log-only mode (submissions validated + logged, API still returns ok). The same three vars must be set in the Vercel dashboard for production email delivery.
 - No build artifacts are required for dev mode (`npm run dev` serves from source).
 
 ## 2. Run the server
@@ -32,5 +32,13 @@ powershell -NoProfile -Command "(Start-Process -FilePath 'npm.cmd' -ArgumentList
 
 - Typecheck: `npx tsc --noEmit` · Tests: `npx vitest --run` (5 tests).
 - Backend smoke test: `curl -X POST http://localhost:8080/api/submit -H "Content-Type: application/json" -d '{"variant":"contact","name":"T","email":"t@example.com","message":"hi"}'` → `{"ok":true,"delivered":"log|email"}`. Validation failures return 400 with field issues.
+- Favicon: `public/favicon.ico` must keep the ICO magic bytes `00 00 01 00` (a PNG renamed `.ico` gets rejected by some browsers — that was the missing-favicon bug). Regenerate from the logo with `node scripts/make-favicon.mjs` (needs `pngjs`, installed with `npm i --no-save pngjs`).
+
+## 3. Deployment (Vercel — https://ideal-foods.vercel.app)
+
+- The deployed API functions live in `api/` and are DELIBERATELY SELF-CONTAINED — `api/submit.ts` and `api/ping.ts` must not import from `../server` (relative cross-directory imports crash Vercel's bundler at cold start → `FUNCTION_INVOCATION_FAILED`, the form-500 bug). Keep validation/email logic mirrored between `api/submit.ts` and `server/submit-core.ts`.
+- Set `EMAIL_USER`, `EMAIL_PASSWORD`, `RECEIVER_EMAIL` in Vercel → Project → Settings → Environment Variables (without them the deployed form succeeds but only logs).
+- Health checks after deploy: `GET /api/ping` should return `{ok:true,...}`; `GET /api/submit` should return a clean 405 JSON (a raw 500 means the function crashed at boot).
+- `vercel.json` rewrites `/api/*` to the functions and everything else to the SPA.
 - Known-benign console noise: React Router v7 future-flag warnings; Vite `configLoader: 'native'` warnings about `__dirname`/extensionless imports in `vite.config.ts` / `server/index.ts`.
 - If a preview says the server pid died but port 8080 still answers 200: the npm.cmd wrapper died while its vite child kept running. Find the real owner with `powershell -NoProfile -Command '$c = Get-NetTCPConnection -LocalPort 8080 -State Listen | Select-Object -First 1; (Get-Process -Id $c.OwningProcess).Id'` and re-register that pid (verify it serves this workspace via the page `<title>` first).
