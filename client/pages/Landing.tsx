@@ -44,7 +44,7 @@ export default function Landing({ line = SYRUP_LINE }: { line?: ProductLine }) {
       <div className="relative w-full" style={{ color: "#2E1F14" }}>
         <SiteBackdrop />
 
-        <div className="relative flex flex-col gap-20 pb-24 pt-4" style={{ zIndex: 1 }}>
+        <div className="relative flex flex-col gap-10 pb-14 pt-4 sm:gap-20 sm:pb-24" style={{ zIndex: 1 }}>
           {/* Heritage stats strip — neutral white chips */}
           <div className="mx-auto grid max-w-7xl grid-cols-2 gap-5 px-4 sm:grid-cols-4 sm:px-6">
             {STATS.map((s) => (
@@ -177,7 +177,7 @@ export default function Landing({ line = SYRUP_LINE }: { line?: ProductLine }) {
               </p>
             </div>
 
-            <div className="mt-14 flex flex-col gap-20">
+            <div className="mt-10 flex flex-col gap-12 sm:mt-14 sm:gap-20">
               {orderedLines.map((ln) => (
                 <div key={ln.key}>
                   <div className="flex flex-wrap items-end justify-between gap-3">

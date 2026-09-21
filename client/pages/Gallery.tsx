@@ -40,7 +40,7 @@ export default function Gallery() {
       <SiteBackdrop />
 
       {/* Hero strip — plain beige backdrop; extra top clearance keeps the fixed navbar off the hero */}
-      <div className="relative w-full" style={{ paddingTop: "calc(90px + 14vh)", paddingBottom: 70, zIndex: 1 }}>
+      <div className="page-hero relative w-full" style={{ paddingBottom: 20, zIndex: 1 }}>
         <div
           className="pointer-events-none absolute inset-x-0 select-none"
           style={{ zIndex: 2, top: "calc(84px + 5vh)", padding: "0 2vw" }}
@@ -64,7 +64,7 @@ export default function Gallery() {
         </div>
       </div>
 
-      <section className="relative mx-auto grid w-full max-w-7xl gap-10 px-4 py-16 sm:px-6 lg:grid-cols-[0.8fr_1.2fr]" style={{ zIndex: 1 }}>
+      <section className="relative mx-auto grid w-full max-w-7xl gap-10 px-4 pb-16 pt-6 sm:px-10 lg:grid-cols-[0.8fr_1.2fr]" style={{ zIndex: 1 }}>
         <div className="lg:pt-8">
           <p className="script-accent" style={{ fontSize: 28 }}>Every bottle, every jar</p>
           <h2 className="display-font mt-1" style={{ fontSize: "clamp(30px, 4vw, 48px)", textTransform: "uppercase" }}>Every flavour has a story</h2>

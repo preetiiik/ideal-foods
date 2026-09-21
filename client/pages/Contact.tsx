@@ -40,8 +40,8 @@ export default function Contact() {
     <div className="relative w-full overflow-hidden" style={{ fontFamily: "'Nunito Sans', sans-serif", color: "#2E1F14" }}>
       <SiteBackdrop />
 
-      {/* Hero strip */}
-      <div className="relative w-full" style={{ paddingTop: "calc(90px + 14vh)", paddingBottom: 70 }}>
+      {/* Hero strip — content pushed below the ghost word */}
+      <div className="page-hero relative w-full" style={{ paddingBottom: 70 }}>
         <div
           className="pointer-events-none absolute inset-x-0 select-none"
           style={{ zIndex: 2, top: "calc(84px + 5vh)", padding: "0 2vw" }}

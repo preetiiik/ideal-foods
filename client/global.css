@@ -164,11 +164,23 @@
     color: #5C4636;
   }
 
+  /* Inner-page hero strip: on phones the content rides up INTO the giant
+     ghost word (watermark look, like desktop); on bigger screens it keeps
+     the deeper drop so the overlap reads the same. */
+  .page-hero {
+    padding-top: calc(90px + 5vh);
+  }
+  @media (min-width: 640px) {
+    .page-hero {
+      padding-top: calc(90px + 19vh);
+    }
+  }
+
   /* ---- Story video reel (Landing) ----
      Desktop: the original narrow half-arch with right-edge fade; the video
      sits at its natural 9/16. Mobile: plain full-width rectangle. */
   .video-reel-frame {
-    border-radius: 0;
+    border-radius: 24px;
   }
   .video-reel-clip {
     mask-image: none;
@@ -272,6 +284,7 @@
     font-style: italic;
     font-weight: 600;
     color: #C25E3A;
+    margin-bottom: 12px;
   }
 
   .gallery-tile {

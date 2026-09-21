@@ -79,14 +79,7 @@ export default function ContactForm({ variant }: { variant: "contact" | "enquiry
       });
       const body = await res.json().catch(() => null);
       if (!res.ok || !body?.ok) {
-        // Non-JSON (e.g. an SPA fallback page or crash) gets a status-aware message.
-        const fallback =
-          res.status === 404
-            ? "The form service isn't available right now. Please email us at idealfoods@rediffmail.com."
-            : res.status >= 500
-              ? "Our form service is having trouble. Please try again in a moment, or email idealfoods@rediffmail.com."
-              : "Something went wrong. Please try again.";
-        throw new Error(body?.error ?? fallback);
+        throw new Error(body?.error ?? "Something went wrong. Please try again.");
       }
       setDelivered(body.delivered === "log" ? "log" : "email");
       setSent(true);

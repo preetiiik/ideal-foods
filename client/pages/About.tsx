@@ -28,7 +28,7 @@ const TIMELINE = [
     year: "1992",
     title: "National honour",
     text: "The National Productivity Council Award is received at the hands of the then Vice President, Dr. Shankar Dayal Sharma.",
-    accent: "#C2477F",
+    accent: "#64748B",
   },
   {
     year: "Today",
@@ -54,7 +54,7 @@ function BandCard({
 }) {
   return (
     <section className="mx-auto w-full max-w-7xl px-4 sm:px-6" hidden={hidden}>
-      <div className={`grid items-center gap-10 py-8 sm:py-12 ${singleColumn ? "" : reverse ? "lg:grid-cols-[1fr_auto]" : "lg:grid-cols-[auto_1fr]"}`}>
+      <div className={`grid items-center gap-4 py-4 sm:gap-8 sm:py-6 ${singleColumn ? "" : reverse ? "lg:grid-cols-[1fr_auto]" : "lg:grid-cols-[auto_1fr]"}`}>
         {children}
       </div>
     </section>
@@ -76,8 +76,9 @@ export default function About() {
     <div className="relative w-full overflow-hidden" style={{ fontFamily: "'Nunito Sans', sans-serif", color: "#2E1F14" }}>
       <SiteBackdrop />
 
-      {/* Hero strip — plain beige backdrop, matching the Contact hero */}
-      <div className="relative w-full" style={{ paddingTop: "calc(90px + 14vh)", paddingBottom: 70, zIndex: 1 }}>
+      {/* Hero strip — plain beige backdrop, matching the Contact hero.
+          Extra top padding keeps the script line clear BELOW the ghost word. */}
+      <div className="page-hero relative w-full" style={{ paddingBottom: 30, zIndex: 1 }}>
         <div
           className="pointer-events-none absolute inset-x-0 select-none"
           style={{ zIndex: 2, top: "calc(84px + 5vh)", padding: "0 2vw" }}
@@ -104,7 +105,7 @@ export default function About() {
         </div>
       </div>
 
-      <div className="relative flex flex-col gap-12 py-16" style={{ zIndex: 1 }}>
+      <div className="relative flex flex-col gap-6 py-8 sm:gap-8 sm:py-10" style={{ zIndex: 1 }}>
         {/* Timeline — colourful cards */}
         <section className="hidden mx-auto w-full max-w-7xl px-4 sm:px-6">
           <div className="grid gap-5 sm:grid-cols-2 lg:grid-cols-5">
@@ -131,8 +132,8 @@ export default function About() {
             <div
               className="mx-auto overflow-hidden rounded-[42%] bg-white/85 lg:order-2"
               style={{
-                width: isMobile ? 210 : 290,
-                height: isMobile ? 210 : 290,
+                width: isMobile ? 280 : 340,
+                height: isMobile ? 280 : 340,
                 border: "2px solid #2F6B4F",
                 boxShadow: "0 18px 40px rgba(47,107,79,0.18)",
               }}
