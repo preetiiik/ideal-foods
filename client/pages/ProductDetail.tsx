@@ -186,7 +186,7 @@ export default function ProductDetail({ line }: { line: ProductLine }) {
                   key={p.slug}
                   to={`${line.detailBase}/${p.slug}`}
                   className="transition-transform duration-200 hover:-translate-y-1"
-                  style={{ width: isMobile ? 64 : 88 }}
+                  style={{ width: isMobile ? 96 : 136 }}
                   title={`IDEAL ${p.name} ${line.suffix}`}
                 >
                   <img
@@ -202,24 +202,37 @@ export default function ProductDetail({ line }: { line: ProductLine }) {
           </div>
         </div>
 
-        {/* Bottom-left back link */}
-        <div className="absolute bottom-6 left-4 sm:bottom-10 sm:left-6" style={{ zIndex: 60 }}>
+        {/* Bottom-left back link — FIXED to the viewport so it stays visible
+            while scrolling the whole detail page (sticky). A frosted pill
+            keeps it readable over any content behind it. */}
+        <div className="fixed bottom-6 left-4 sm:bottom-8 sm:left-6" style={{ zIndex: 60 }}>
           <Link
             to={line.heroPath}
             className="flex items-center gap-2 text-white"
             style={{
               fontFamily: "Anton, sans-serif",
-              fontSize: "clamp(18px, 3vw, 30px)",
+              fontSize: "clamp(14px, 2.2vw, 22px)",
               letterSpacing: "-0.01em",
               textTransform: "uppercase",
               textDecoration: "none",
-              opacity: 0.95,
-              transition: "opacity 200ms",
+              opacity: 0.98,
+              transition: "opacity 200ms, background-color 200ms",
+              backgroundColor: "rgba(0,0,0,0.22)",
+              backdropFilter: "blur(6px)",
+              WebkitBackdropFilter: "blur(6px)",
+              padding: "6px 12px",
+              borderRadius: 999,
             }}
-            onMouseEnter={(e) => (e.currentTarget.style.opacity = "1")}
-            onMouseLeave={(e) => (e.currentTarget.style.opacity = "0.95")}
+            onMouseEnter={(e) => {
+              e.currentTarget.style.opacity = "1";
+              e.currentTarget.style.backgroundColor = "rgba(0,0,0,0.32)";
+            }}
+            onMouseLeave={(e) => {
+              e.currentTarget.style.opacity = "0.98";
+              e.currentTarget.style.backgroundColor = "rgba(0,0,0,0.22)";
+            }}
           >
-            <ArrowLeft className="h-5 w-5 sm:h-7 sm:w-7" strokeWidth={2.25} />
+            <ArrowLeft className="h-3.5 w-3.5 sm:h-4 sm:w-4" strokeWidth={2.25} />
             All {line.label.toLowerCase()}
           </Link>
         </div>

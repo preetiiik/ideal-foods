@@ -6,9 +6,9 @@ import type { ProductLine } from "@/data/products";
 import { GRAIN } from "@/data/products";
 
 const ANIM_MS = 450;
-const AUTOPLAY_MS = 3500;
+const AUTOPLAY_MS = 2500;
 /* After a manual arrow click, wait this long before auto-sliding again */
-const AUTOPLAY_RESUME_MS = 8000;
+const AUTOPLAY_RESUME_MS = 2000;
 
 export default function ProductCarousel({ line }: { line: ProductLine }) {
   const items = line.items;
@@ -22,6 +22,9 @@ export default function ProductCarousel({ line }: { line: ProductLine }) {
   const [isMobile, setIsMobile] = useState(
     typeof window !== "undefined" ? window.innerWidth < 640 : false,
   );
+  /* Viewport height — used to cap the ghost word's height so it never
+     reaches the product label; refreshed on resize. */
+  const [vh, setVh] = useState(typeof window !== "undefined" ? window.innerHeight : 800);
   /* Ghost text keeps the outgoing product around briefly so it can animate out */
   const [ghostPrev, setGhostPrev] = useState<string | null>(null);
 
@@ -36,7 +39,10 @@ export default function ProductCarousel({ line }: { line: ProductLine }) {
   }, [items]);
 
   useEffect(() => {
-    const onResize = () => setIsMobile(window.innerWidth < 640);
+    const onResize = () => {
+      setIsMobile(window.innerWidth < 640);
+      setVh(window.innerHeight);
+    };
     window.addEventListener("resize", onResize);
     const mq = window.matchMedia("(prefers-reduced-motion: reduce)");
     reducedMotion.current = mq.matches;
@@ -91,6 +97,13 @@ export default function ProductCarousel({ line }: { line: ProductLine }) {
     if (i === (activeIndex + 2) % ITEM_COUNT) return "back1";
     return "back2";
   };
+
+  /* The giant ghost word must never grow down into the bottom-left product
+     label: fit-to-width is capped by the actual space between the word's top
+     edge and the label zone (viewport minus nav band, label band, margins). */
+  const ghostMaxHeight = isMobile
+    ? Math.max(120, vh * 0.9 - (88 + vh * 0.1) - vh * 0.34)
+    : Math.max(180, vh * 0.87 - vh * 0.13 - vh * 0.30);
 
   const itemStyle = (i: number): React.CSSProperties => {
     const role = roleFor(i);
@@ -217,7 +230,7 @@ export default function ProductCarousel({ line }: { line: ProductLine }) {
           {ghostPrev && (
             <div className="absolute inset-0 flex items-start justify-center">
               <div key={`out-${ghostPrev}`} className="ghost-out w-full">
-                <FitText className="ghost-text" maxScale={1.5}>
+                <FitText className="ghost-text" maxScale={1.5} maxHeight={ghostMaxHeight}>
                   {ghostPrev}
                 </FitText>
               </div>
@@ -225,7 +238,7 @@ export default function ProductCarousel({ line }: { line: ProductLine }) {
           )}
           <div className="absolute inset-0 flex items-start justify-center">
             <div key={active.slug} className="ghost-in w-full">
-              <FitText className="ghost-text" maxScale={1.5}>
+              <FitText className="ghost-text" maxScale={1.5} maxHeight={ghostMaxHeight}>
                 {active.short}
               </FitText>
             </div>
@@ -265,6 +278,7 @@ export default function ProductCarousel({ line }: { line: ProductLine }) {
               letterSpacing: "0.02em",
               color: "white",
               opacity: 0.95,
+              textShadow: "0 2px 14px rgba(0,0,0,0.35), 0 1px 3px rgba(0,0,0,0.3)",
             }}
           >
             IDEAL {active.name} {line.suffix}
@@ -276,6 +290,7 @@ export default function ProductCarousel({ line }: { line: ProductLine }) {
               color: "white",
               opacity: 0.85,
               lineHeight: 1.6,
+              textShadow: "0 2px 12px rgba(0,0,0,0.35)",
             }}
           >
             {active.tagline} — crafted since 1972. The flavour is rich, the finish

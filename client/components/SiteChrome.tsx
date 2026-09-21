@@ -23,7 +23,6 @@ export function SiteNav() {
   const location = useLocation();
   const [open, setOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
-  const [pastHalf, setPastHalf] = useState(false);
   const [productsOpen, setProductsOpen] = useState(false);
   const [mobileProductsOpen, setMobileProductsOpen] = useState(false);
 
@@ -41,9 +40,6 @@ export function SiteNav() {
     const read = () => {
       const y = getY();
       setScrolled(y > 60);
-      // On cinematic-hero pages the bar only appears once the hero is
-      // roughly half scrolled away (until then the hero art stands alone).
-      setPastHalf(y > window.innerHeight * 0.5);
     };
     read();
     let lastY = getY();
@@ -67,7 +63,6 @@ export function SiteNav() {
   }, []);
 
   const heroTop = !scrolled && DARK_HERO_RE.test(location.pathname);
-  const heroHidden = !pastHalf && DARK_HERO_RE.test(location.pathname);
   const ink = heroTop ? "#FFFFFF" : "#2E1F14";
   const lineInk = heroTop ? "rgba(255,255,255,0.5)" : "rgba(46,31,20,0.35)";
 
@@ -85,28 +80,22 @@ export function SiteNav() {
       }}
     >
       <div className="mx-auto flex max-w-7xl items-center justify-between px-4 py-3 sm:px-6">
-        {/* Logo sits on a white pill so it reads on both the dark heroes and the cream sections.
-            It is ALWAYS visible — on cinematic heroes the links hide, the logo stays. */}
+        {/* Logo sits on a white pill so it reads on both the dark heroes and the cream sections. */}
         <Link
           to="/"
           className="inline-flex items-center rounded-2xl px-1.5 py-1"
           style={{
             textDecoration: "none",
-            transition: "transform 350ms cubic-bezier(0.4,0,0.2,1)",
-            transform: heroHidden ? "scale(1.06)" : "scale(1)",
           }}
           aria-label="IDEAL Food Products — Home"
         >
-          <img src="/ideal-logo.png" alt="IDEAL logo" style={{ height: 54, width: "auto" }} draggable={false} />
+          <img src="/ideal-logo.png" alt="IDEAL logo" style={{ height: 64, width: "auto" }} draggable={false} />
         </Link>
 
-        {/* Desktop links — on cinematic heroes these hide (opacity 0, inert)
-            until the hero is half scrolled away; the logo never hides. */}
+        {/* Desktop links — white ink over the hero, cream bar ink once scrolled. */}
         <nav
           className="hidden items-center gap-7 md:flex"
           style={{
-            opacity: heroHidden ? 0 : 1,
-            pointerEvents: heroHidden ? "none" : "auto",
             transition: "opacity 350ms ease",
           }}
         >
@@ -236,7 +225,7 @@ export function SiteNav() {
           </Link>
         </nav>
 
-        {/* Mobile toggle — same hero-hiding rule as the desktop links */}
+        {/* Mobile toggle — white over the hero, dark ink once scrolled */}
         <button
           className="flex items-center justify-center md:hidden"
           aria-label={open ? "Close menu" : "Open menu"}
@@ -248,8 +237,6 @@ export function SiteNav() {
             border: `1.5px solid ${lineInk}`,
             color: ink,
             background: heroTop ? "rgba(255,255,255,0.12)" : "rgba(255,255,255,0.6)",
-            opacity: heroHidden ? 0 : 1,
-            pointerEvents: heroHidden ? "none" : "auto",
             transition: "color 300ms ease, border-color 300ms ease, background-color 300ms ease, opacity 350ms ease",
           }}
         >
@@ -427,7 +414,7 @@ export function SiteFooter() {
         {/* Brand + quick links */}
         <div>
           <Link to="/" aria-label="IDEAL Food Products — Home" style={{ display: "inline-block", textDecoration: "none" }}>
-            <img src="/ideal-logo.png" alt="IDEAL logo" style={{ height: 54, width: "auto" }} draggable={false} />
+            <img src="/ideal-logo.png" alt="IDEAL logo" style={{ height: 64, width: "auto" }} draggable={false} />
           </Link>
           <p className="mt-4" style={{ fontSize: 13, lineHeight: 1.7, color: "rgba(255,255,255,0.72)", maxWidth: 260 }}>
             The oldest manufacturers of all syrups — crafting syrups and pickles in Belgaum since 1972.

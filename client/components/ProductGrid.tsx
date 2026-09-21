@@ -161,7 +161,7 @@ export default function ProductGrid({ lineKey }: { lineKey: "syrups" | "pickles"
   if (!line) return null;
 
   return (
-    <div className="mt-10 grid grid-cols-2 gap-x-6 gap-y-12 sm:gap-x-10 lg:grid-cols-5">
+    <div className="mt-10 grid grid-cols-2 gap-x-6 gap-y-12 sm:gap-x-10 lg:grid-cols-4">
       {line.items.map((p: Product, i: number) => (
         <ProductCard key={p.slug} p={p} suffix={line.suffix} detailBase={line.detailBase} idx={i} />
       ))}

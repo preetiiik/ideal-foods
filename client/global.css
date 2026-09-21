@@ -164,6 +164,26 @@
     color: #5C4636;
   }
 
+  /* ---- Story video reel (Landing) ----
+     Desktop: the original narrow half-arch with right-edge fade; the video
+     sits at its natural 9/16. Mobile: plain full-width rectangle. */
+  .video-reel-frame {
+    border-radius: 0;
+  }
+  .video-reel-clip {
+    mask-image: none;
+    -webkit-mask-image: none;
+  }
+  @media (min-width: 1024px) {
+    .video-reel-frame {
+      border-radius: 50% 0 0 50%;
+    }
+    .video-reel-clip {
+      mask-image: linear-gradient(to right, black 0%, black 88%, transparent 100%);
+      -webkit-mask-image: linear-gradient(to right, black 0%, black 88%, transparent 100%);
+    }
+  }
+
   @keyframes ghost-in {
     0% { opacity: 0; transform: translateY(40px) scale(0.94); }
     100% { opacity: 1; transform: translateY(0) scale(1); }

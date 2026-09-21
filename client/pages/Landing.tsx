@@ -5,13 +5,14 @@ import SiteBackdrop from "@/components/SiteBackdrop";
 import ProductCarousel from "@/components/ProductCarousel";
 import ProductGrid from "@/components/ProductGrid";
 import FitText from "@/components/FitText";
+import CountUp from "@/components/CountUp";
 import { SYRUP_LINE, PRODUCT_LINES, type ProductLine } from "@/data/products";
 
 const STATS = [
-  { value: "1972", label: "Founded in Belgaum", accent: "#C25E3A" },
-  { value: "9+", label: "Signature products", accent: "#2F6B4F" },
-  { value: "2", label: "Product lines", accent: "#C2477F" },
-  { value: "1992", label: "NPC Award", accent: "#B97E14" },
+  { value: 1972, suffix: "", label: "Founded in Belgaum", accent: "#C25E3A" },
+  { value: 9, suffix: "+", label: "Signature products", accent: "#2F6B4F" },
+  { value: 2, suffix: "", label: "Product lines", accent: "#C2477F" },
+  { value: 1992, suffix: "", label: "NPC Award", accent: "#B97E14" },
 ];
 
 /**
@@ -24,9 +25,9 @@ const STORY_PARAS = [
 ];
 
 /** The reel shown beside the story copy — syrup video on /, pickle video on /pickles. */
-const LINE_VIDEO: Record<ProductLine["key"], { src: string; caption: string }> = {
-  syrups: { src: "/videos/syrup-vid.mp4", caption: "Our syrups, in motion" },
-  pickles: { src: "/videos/pickle-vid.mp4", caption: "Our pickles, in motion" },
+const LINE_VIDEO: Record<ProductLine["key"], { src: string }> = {
+  syrups: { src: "/videos/syrup-vid.mp4" },
+  pickles: { src: "/videos/pickle-vid.mp4" },
 };
 
 export default function Landing({ line = SYRUP_LINE }: { line?: ProductLine }) {
@@ -53,7 +54,8 @@ export default function Landing({ line = SYRUP_LINE }: { line?: ProductLine }) {
                 style={{ border: "1.5px solid rgba(64,42,30,0.12)", boxShadow: "0 10px 26px rgba(64,42,30,0.06)" }}
               >
                 <p style={{ fontFamily: "'Fraunces', serif", fontWeight: 700, fontSize: "clamp(30px, 4vw, 44px)", color: s.accent }}>
-                  {s.value}
+                  <CountUp target={s.value} />
+                  {s.suffix}
                 </p>
                 <p className="mt-1" style={{ fontSize: 11, fontWeight: 700, textTransform: "uppercase", letterSpacing: "0.18em", color: "#5C4636" }}>
                   {s.label}
@@ -84,11 +86,11 @@ export default function Landing({ line = SYRUP_LINE }: { line?: ProductLine }) {
             </div>
 
             {/* The line's video reel — syrup video on /, pickle video on /pickles.
-                Text stays identical; only the reel changes with the hero. */}
+                Desktop: the original narrow half-arch at the video's natural
+                9/16; mobile: plain rectangle. No caption overlay. */}
             <div className="relative z-10 flex w-full justify-center py-7 sm:py-10 lg:justify-end lg:py-0">
               <div
-                className="relative w-full max-w-[360px] overflow-hidden"
-                style={{ borderRadius: "50% 0 0 50%" }}
+                className="video-reel-frame relative w-full max-w-[360px] overflow-hidden"
               >
               <video
                 key={video.src}
@@ -98,36 +100,12 @@ export default function Landing({ line = SYRUP_LINE }: { line?: ProductLine }) {
                 loop
                 playsInline
                 preload="metadata"
-                className="block w-full"
+                className="video-reel-clip block w-full"
                 style={{
                   objectFit: "cover",
                   aspectRatio: "9 / 16",
-                  maskImage: "linear-gradient(to right, black 0%, black 88%, transparent 100%)",
-                  WebkitMaskImage: "linear-gradient(to right, black 0%, black 88%, transparent 100%)",
                 }}
               />
-              <div
-                className="absolute inset-x-0 bottom-0 flex items-end justify-between gap-3 px-5 pb-5 pt-16"
-                style={{ background: "linear-gradient(to top, rgba(46,31,20,0.72), transparent)" }}
-              >
-                <p className="script-accent" style={{ fontSize: 22, color: "#FFF9ED" }}>
-                  {video.caption}
-                </p>
-                <span
-                  className="rounded-full"
-                  style={{
-                    border: "1px solid rgba(255,249,237,0.55)",
-                    padding: "6px 14px",
-                    fontSize: 10.5,
-                    fontWeight: 700,
-                    textTransform: "uppercase",
-                    letterSpacing: "0.16em",
-                    color: "#FFF9ED",
-                  }}
-                >
-                  Since 1972
-                </span>
-              </div>
               </div>
             </div>
           </section>

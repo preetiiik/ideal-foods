@@ -11,6 +11,7 @@ export default function FitText({
   className,
   style,
   align = "center",
+  maxHeight,
 }: {
   children: ReactNode;
   /** Upper bound for the scale factor (1 = never grow beyond natural size) */
@@ -22,6 +23,10 @@ export default function FitText({
       overflowing inline-blocks (a center transform origin would push the
       shrunk line off to the right). */
   align?: "center" | "left";
+  /** Optional pixel cap on the scaled line's height — the fit factor is
+      lowered further if the scaled text would exceed it (e.g. the hero ghost
+      word must stay clear of the product label below it). */
+  maxHeight?: number;
 }) {
   const wrapRef = useRef<HTMLSpanElement>(null);
   const innerRef = useRef<HTMLSpanElement>(null);
@@ -40,7 +45,15 @@ export default function FitText({
       inner.style.transform = prev;
       if (natural > 0) {
         const available = wrap.clientWidth;
-        setFit(Math.min(maxScale, available / natural));
+        let next = Math.min(maxScale, available / natural);
+        if (maxHeight && natural > 0) {
+          /* inner.scrollHeight == natural height at scale 1 — cap via ratio */
+          const naturalHeight = inner.scrollHeight;
+          if (naturalHeight > 0) {
+            next = Math.min(next, maxHeight / naturalHeight);
+          }
+        }
+        setFit(Math.max(0.1, next));
       }
     };
 
@@ -50,7 +63,7 @@ export default function FitText({
     /* Re-measure once web fonts finish loading */
     if (document.fonts?.ready) document.fonts.ready.then(measure).catch(() => {});
     return () => ro.disconnect();
-  }, [children, maxScale]);
+  }, [children, maxScale, maxHeight]);
 
   return (
     <span ref={wrapRef} className={className} style={{ display: "block", width: "100%", textAlign: align, ...style }}>
