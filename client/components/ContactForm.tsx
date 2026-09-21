@@ -232,9 +232,24 @@ export default function ContactForm({ variant }: { variant: "contact" | "enquiry
         </p>
       )}
 
-      <button type="submit" className="btn-solid-gold mt-6" disabled={sending} style={{ width: variant === "enquiry" ? "100%" : undefined, opacity: sending ? 0.7 : 1, cursor: sending ? "wait" : "pointer" }}>
+      {/* <button type="submit" className="btn-solid-gold mt-6" disabled={sending} style={{ width: variant === "enquiry" ? "100%" : undefined, opacity: sending ? 0.7 : 1, cursor: sending ? "wait" : "pointer" }}>
         {sending ? "Sending…" : variant === "enquiry" ? "Send Enquiry" : "Submit"}
-      </button>
+      </button> */}
+      <button
+  type="submit"
+  className="btn-solid-gold mt-6"
+  disabled={sending}
+  style={{
+    opacity: sending ? 0.7 : 1,
+    cursor: sending ? "wait" : "pointer",
+  }}
+>
+  {sending
+    ? "Sending…"
+    : variant === "enquiry"
+      ? "Send Enquiry"
+      : "Submit"}
+</button>
     </form>
   );
 }

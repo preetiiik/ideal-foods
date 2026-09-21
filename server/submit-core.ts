@@ -104,13 +104,14 @@ export async function processSubmission(
   );
 
   if (!emailConfigured()) {
-    console.error(
-      "[submission] Email configuration is missing."
+    // Keep the form usable in local/preview environments where mail credentials
+    // have not been added yet. The complete, validated enquiry is already
+    // emitted above, so it can be picked up from the server log.
+    console.warn(
+      "[submission] Email configuration is missing; submission logged only."
     );
 
-    throw new Error(
-      "EMAIL_USER, EMAIL_PASSWORD or RECEIVER_EMAIL is missing."
-    );
+    return { delivered: "log" };
   }
 
   const transporter = nodemailer.createTransport({
