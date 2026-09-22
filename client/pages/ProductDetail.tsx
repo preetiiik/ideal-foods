@@ -186,7 +186,7 @@ export default function ProductDetail({ line }: { line: ProductLine }) {
                   key={p.slug}
                   to={`${line.detailBase}/${p.slug}`}
                   className="transition-transform duration-200 hover:-translate-y-1"
-                  style={{ width: isMobile ? 80 : 112 }}
+                  style={{ width: isMobile ? 104 : 136 }}
                   title={`IDEAL ${p.name} ${line.suffix}`}
                 >
                   <img

@@ -89,7 +89,7 @@ export function SiteNav() {
           }}
           aria-label="IDEAL Food Products — Home"
         >
-          <img src="/ideal-logo.png" alt="IDEAL logo" style={{ height: 80, width: "auto" }} draggable={false} />
+          <img src="/ideal-logo.png" alt="IDEAL logo" className="brand-logo" draggable={false} />
         </Link>
 
         {/* Desktop links — white ink over the hero, cream bar ink once scrolled. */}
@@ -307,12 +307,12 @@ export function SiteNav() {
                             onClick={() => setOpen(false)}
                             style={{
                               display: "block",
-                              padding: "10px 0 4px",
-                              fontSize: 12,
-                              fontWeight: 700,
-                              textTransform: "uppercase",
-                              letterSpacing: "0.12em",
-                              color: "#2F6B4F",
+                          padding: "10px 0 4px",
+                          fontSize: 12,
+                          fontWeight: 700,
+                          textTransform: "uppercase",
+                          letterSpacing: "0.12em",
+                          color: "#C25E3A",
                               textDecoration: "none",
                             }}
                           >
@@ -399,7 +399,7 @@ function WhatsAppIcon({ size = 17 }: { size?: number }) {
 export function SiteFooter() {
   return (
     <footer className="relative w-full" style={{ backgroundColor: "#0c0b3a", color: "white" }}>
-      {/* Colour washes — logo royal blues + silver */}
+      {/* Colour washes */}
       <div
         aria-hidden
         className="pointer-events-none absolute inset-0"
@@ -414,7 +414,7 @@ export function SiteFooter() {
         {/* Brand + quick links */}
         <div>
           <Link to="/" aria-label="IDEAL Food Products — Home" style={{ display: "inline-block", textDecoration: "none" }}>
-            <img src="/ideal-logo.png" alt="IDEAL logo" style={{ height: 80, width: "auto" }} draggable={false} />
+            <img src="/ideal-logo.png" alt="IDEAL logo" className="brand-logo" draggable={false} />
           </Link>
           <p className="mt-4" style={{ fontSize: 13, lineHeight: 1.7, color: "rgba(255,255,255,0.72)", maxWidth: 260 }}>
             The oldest manufacturers of all syrups — crafting syrups and pickles in Belgaum since 1972.
@@ -425,7 +425,7 @@ export function SiteFooter() {
         </div>
 
         <div>
-          <p style={{ fontSize: 11, fontWeight: 700, textTransform: "uppercase", letterSpacing: "0.22em", color: "#F5C86AB8FF" }}>
+          <p style={{ fontSize: 11, fontWeight: 700, textTransform: "uppercase", letterSpacing: "0.22em", color: "#F5C86A" }}>
             Quick Links
           </p>
           <div className="mt-4 flex flex-col gap-2.5">
@@ -434,7 +434,7 @@ export function SiteFooter() {
                 key={l.to}
                 to={l.to}
                 style={{ fontSize: 13.5, color: "rgba(255,255,255,0.78)", textDecoration: "none", transition: "color 150ms" }}
-                onMouseEnter={(e) => (e.currentTarget.style.color = "#F5C86AB8FF")}
+                onMouseEnter={(e) => (e.currentTarget.style.color = "#F5C86A")}
                 onMouseLeave={(e) => (e.currentTarget.style.color = "rgba(255,255,255,0.78)")}
               >
                 {l.label}
@@ -444,7 +444,7 @@ export function SiteFooter() {
         </div>
 
         <div>
-          <p style={{ fontSize: 11, fontWeight: 700, textTransform: "uppercase", letterSpacing: "0.22em", color: "#F5C86AB8FF" }}>
+          <p style={{ fontSize: 11, fontWeight: 700, textTransform: "uppercase", letterSpacing: "0.22em", color: "#F5C86A" }}>
             Our Products
           </p>
           {/* Two columns — syrups on the left, pickles on the right */}
@@ -463,7 +463,7 @@ export function SiteFooter() {
                       key={p.slug}
                       to={`${line.detailBase}/${p.slug}`}
                       style={{ fontSize: 12.5, color: "rgba(255,255,255,0.66)", textDecoration: "none", transition: "color 150ms" }}
-                      onMouseEnter={(e) => (e.currentTarget.style.color = "#F5C86AB8FF")}
+                      onMouseEnter={(e) => (e.currentTarget.style.color = "#F5C86A")}
                       onMouseLeave={(e) => (e.currentTarget.style.color = "rgba(255,255,255,0.66)")}
                     >
                       {p.name}
@@ -476,20 +476,20 @@ export function SiteFooter() {
         </div>
 
         <div>
-          <p style={{ fontSize: 11, fontWeight: 700, textTransform: "uppercase", letterSpacing: "0.22em", color: "#F5C86AB8FF" }}>
+          <p style={{ fontSize: 11, fontWeight: 700, textTransform: "uppercase", letterSpacing: "0.22em", color: "#F5C86A" }}>
             Contact
           </p>
           <div className="mt-4 flex flex-col gap-3.5" style={{ fontSize: 13, color: "rgba(255,255,255,0.78)", lineHeight: 1.6 }}>
             <span className="flex items-start gap-2.5">
-              <MapPin size={15} style={{ marginTop: 3, flexShrink: 0, color: "#F5C86AB8FF" }} />
+              <MapPin size={15} style={{ marginTop: 3, flexShrink: 0, color: "#F5C86A" }} />
               Ideal Food Products. 671, Khanapur Road, Udyambag, Belgaum- 590 008
             </span>
             <a href="tel:+919845908686" className="flex items-center gap-2.5" style={{ color: "inherit", textDecoration: "none" }}>
-              <Phone size={15} style={{ flexShrink: 0, color: "#F5C86AB8FF" }} />
+              <Phone size={15} style={{ flexShrink: 0, color: "#F5C86A" }} />
               +91-9845908686
             </a>
             <a href="mailto:idealfoods@rediffmail.com" className="flex items-center gap-2.5" style={{ color: "inherit", textDecoration: "none" }}>
-              <Mail size={15} style={{ flexShrink: 0, color: "#F5C86AB8FF" }} />
+              <Mail size={15} style={{ flexShrink: 0, color: "#F5C86A" }} />
               idealfoods@rediffmail.com
             </a>
           </div>
@@ -532,7 +532,7 @@ export function SiteFooter() {
 
       <div className="relative" style={{ borderTop: "1px solid rgba(255,255,255,0.12)" }}>
         <div
-          className="mx-auto flex max-w-7xl flex-col items-center justify-between gap-2 px-4 py-5 sm:flex-row sm:px-6"
+          className="mx-auto flex max-w-7xl flex-col items-center justify-center gap-2 px-4 py-5 text-center sm:px-6"
           style={{ fontSize: 11.5, color: "rgba(255,255,255,0.55)", letterSpacing: "0.06em" }}
         >
           <span>
@@ -541,9 +541,9 @@ export function SiteFooter() {
               href="https://spitel.com"
               target="_blank"
               rel="noopener noreferrer"
-              style={{ color: "#F5C86AB8FF", textDecoration: "none", transition: "color 150ms" }}
-              onMouseEnter={(e) => (e.currentTarget.style.color = "#FFE3A1D8FF")}
-              onMouseLeave={(e) => (e.currentTarget.style.color = "#F5C86AB8FF")}
+              style={{ color: "#F5C86A", textDecoration: "none", transition: "color 150ms" }}
+              onMouseEnter={(e) => (e.currentTarget.style.color = "#FFE3A1")}
+              onMouseLeave={(e) => (e.currentTarget.style.color = "#F5C86A")}
             >
               Spitel Pvt. Ltd.
             </a>

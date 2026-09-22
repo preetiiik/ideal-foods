@@ -30,6 +30,19 @@ export default function Enquiry() {
             </div>
           </div>
         </div>
+        <span
+          aria-hidden
+          className="hero-scrim pointer-events-none absolute"
+          style={{
+            zIndex: 20,
+            top: "calc(84px + 5vh)",
+            height: "calc(38vh + 120px)",
+            left: 0,
+            right: 0,
+            background:
+              "radial-gradient(120% 90% at 50% 42%, rgba(243,231,211,0.92) 30%, rgba(243,231,211,0.72) 55%, rgba(243,231,211,0) 100%)",
+          }}
+        />
         <div className="relative mx-auto max-w-7xl px-4 text-center sm:px-6" style={{ zIndex: 30 }}>
           <p className="script-accent" style={{ fontSize: "clamp(30px, 4vw, 44px)" }}>Bulk &amp; retail orders</p>
           <h1 className="animate-fade-up display-font mt-2" style={{ fontSize: "clamp(32px, 6vw, 64px)", textTransform: "uppercase" }}>

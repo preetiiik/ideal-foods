@@ -28,7 +28,7 @@ const TIMELINE = [
     year: "1992",
     title: "National honour",
     text: "The National Productivity Council Award is received at the hands of the then Vice President, Dr. Shankar Dayal Sharma.",
-    accent: "#64748B",
+    accent: "#C2477F",
   },
   {
     year: "Today",
@@ -54,7 +54,7 @@ function BandCard({
 }) {
   return (
     <section className="mx-auto w-full max-w-7xl px-4 sm:px-6" hidden={hidden}>
-      <div className={`grid items-center gap-4 py-4 sm:gap-8 sm:py-6 ${singleColumn ? "" : reverse ? "lg:grid-cols-[1fr_auto]" : "lg:grid-cols-[auto_1fr]"}`}>
+      <div className={`grid items-center gap-2 py-2 sm:gap-8 sm:py-6 ${singleColumn ? "" : reverse ? "lg:grid-cols-[1fr_auto]" : "lg:grid-cols-[auto_1fr]"}`}>
         {children}
       </div>
     </section>
@@ -91,6 +91,19 @@ export default function About() {
             </div>
           </div>
         </div>
+        <span
+          aria-hidden
+          className="hero-scrim pointer-events-none absolute"
+          style={{
+            zIndex: 20,
+            top: "calc(84px + 5vh)",
+            height: "calc(38vh + 120px)",
+            left: 0,
+            right: 0,
+            background:
+              "radial-gradient(120% 90% at 50% 42%, rgba(243,231,211,0.92) 30%, rgba(243,231,211,0.72) 55%, rgba(243,231,211,0) 100%)",
+          }}
+        />
         <div className="relative mx-auto w-full max-w-7xl px-4 text-center sm:px-6" style={{ zIndex: 30 }}>
           <p className="script-accent" style={{ fontSize: "clamp(30px, 4vw, 44px)" }}>We are the oldest manufacturers of all syrups</p>
           <h1 className="animate-fade-up display-font mt-2" style={{ fontSize: "clamp(32px, 6vw, 64px)", textTransform: "uppercase" }}>
@@ -132,8 +145,8 @@ export default function About() {
             <div
               className="mx-auto overflow-hidden rounded-[42%] bg-white/85 lg:order-2"
               style={{
-                width: isMobile ? 280 : 340,
-                height: isMobile ? 280 : 340,
+                width: isMobile ? "min(94%, 380px)" : 340,
+                aspectRatio: "1 / 1",
                 border: "2px solid #2F6B4F",
                 boxShadow: "0 18px 40px rgba(47,107,79,0.18)",
               }}

@@ -2,6 +2,8 @@
   - `__dirname` (vite.config.ts:22:25). Use `import.meta.dirname` instead
   - import "./server" resolves to a directory index (vite.config.ts:4:30). Import the index file directly
   - import "./routes/demo" without a file extension (server/index.ts:4:28). Add the file extension
+  - import "./routes/submit" without a file extension (server/index.ts:5:30). Add the file extension
+  - import "../submit-core" without a file extension (server/routes/submit.ts:5:8). Add the file extension
 Set `VITE_CONFIG_NATIVE_IGNORE_WARNING=true` to suppress this warning.[39m
 
 A PostCSS plugin did not pass the `from` option to `postcss.parse`. This may cause imported assets to be incorrectly transformed. If you've recently added a PostCSS plugin that raised this warning, please contact the package author to fix the issue.

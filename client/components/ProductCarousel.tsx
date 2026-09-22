@@ -222,7 +222,7 @@ export default function ProductCarousel({ line }: { line: ProductLine }) {
           style={{
             zIndex: 2,
             /* Mobile: start below the fixed navbar logo + pill so the giant word never overlaps either */
-            top: isMobile ? "calc(88px + 10vh)" : "13%",
+            top: isMobile ? "calc(128px + 10vh)" : "13%",
             perspective: "900px",
             padding: "0 2vw",
           }}
