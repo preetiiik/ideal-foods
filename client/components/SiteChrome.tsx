@@ -40,6 +40,8 @@ export function SiteNav() {
     const read = () => {
       const y = getY();
       setScrolled(y > 60);
+      // Scrolling past the hero brings the full header back — drop the burger menu.
+      if (y > 60) setOpen(false);
     };
     read();
     let lastY = getY();
@@ -63,6 +65,8 @@ export function SiteNav() {
   }, []);
 
   const heroTop = !scrolled && DARK_HERO_RE.test(location.pathname);
+  /* Home hero stays clean: logo + burger only — the full link bar returns on scroll. */
+  const heroMinimal = !scrolled && location.pathname === "/";
   const ink = heroTop ? "#FFFFFF" : "#2E1F14";
   const lineInk = heroTop ? "rgba(255,255,255,0.5)" : "rgba(46,31,20,0.35)";
 
@@ -92,7 +96,8 @@ export function SiteNav() {
           <img src="/ideal-logo.png" alt="IDEAL logo" className="brand-logo" draggable={false} />
         </Link>
 
-        {/* Desktop links — white ink over the hero, cream bar ink once scrolled. */}
+        {/* Desktop links — hidden on the clean home hero (burger replaces them). */}
+        {!heroMinimal && (
         <nav
           className="hidden items-center gap-7 md:flex"
           style={{
@@ -224,10 +229,11 @@ export function SiteNav() {
             </span>
           </Link>
         </nav>
+        )}
 
-        {/* Mobile toggle — white over the hero, dark ink once scrolled */}
+        {/* Burger — the single control on the clean home hero; mobile-only toggle elsewhere. */}
         <button
-          className="flex items-center justify-center md:hidden"
+          className={`flex items-center justify-center ${heroMinimal ? "" : "md:hidden"}`}
           aria-label={open ? "Close menu" : "Open menu"}
           onClick={() => setOpen((v) => !v)}
           style={{
@@ -244,15 +250,22 @@ export function SiteNav() {
         </button>
       </div>
 
-      {/* Mobile menu */}
-      {open && (          <div
-          className="md:hidden"
-          style={{
-            backgroundColor: "rgba(255,247,234,0.98)",
-            borderTop: "1px solid rgba(64,42,30,0.10)",
-          }}
-        >
-          <div className="flex flex-col px-4 py-4 sm:px-6">
+      {/* Compact dropdown card anchored under the burger — not a full-width strip */}
+      {open && (
+          <div
+            className="absolute right-3 top-full sm:right-5"
+            style={{
+              marginTop: 10,
+              width: "min(320px, calc(100vw - 24px))",
+              backgroundColor: "rgba(255,247,234,0.98)",
+              border: "1px solid rgba(64,42,30,0.12)",
+              borderRadius: 18,
+              boxShadow: "0 20px 45px rgba(64,42,30,0.22)",
+              overflow: "hidden auto",
+              maxHeight: "calc(100vh - 130px)",
+            }}
+          >
+          <div className="flex flex-col px-4 py-4">
             {HEADER_NAV_LINKS.map((l) =>
               l.to === "/gallery" ? (
                 /* Our Products — expandable accordion with both lines + products */
