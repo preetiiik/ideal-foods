@@ -427,7 +427,7 @@ export function SiteFooter() {
         {/* Brand + quick links */}
         <div>
           <Link to="/" aria-label="IDEAL Food Products — Home" style={{ display: "inline-block", textDecoration: "none" }}>
-            <img src="/ideal-logo.png" alt="IDEAL logo" className="brand-logo" draggable={false} />
+            <img src="/ideal-logo.png" alt="IDEAL logo" className="brand-logo-footer" draggable={false} />
           </Link>
           <p className="mt-4" style={{ fontSize: 13, lineHeight: 1.7, color: "rgba(255,255,255,0.72)", maxWidth: 260 }}>
             The oldest manufacturers of all syrups — crafting syrups and pickles in Belgaum since 1972.
