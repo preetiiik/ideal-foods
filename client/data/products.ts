@@ -4,6 +4,8 @@ export interface Product {
   name: string;
   /** Short uppercase word for the giant ghost text */
   short: string;
+  /** Skip appending the line suffix (e.g. "Mango Chutney" should not read "Mango Chutney Pickle") */
+  omitSuffix?: boolean;
   bg: string;
   panel: string;
   image: string;
@@ -80,8 +82,8 @@ export const SYRUP_LINE: ProductLine = {
       slug: "rose",
       name: "Rose",
       short: "ROSE",
-      bg: "#E882B4",
-      panel: "#ED9DC4",
+      bg: "#E2344E",
+      panel: "#EE6B80",
       image: "/bottles/rose.png",
       cardImage: "/rose.png",
       tagline: "A garden in a glass",
@@ -132,16 +134,16 @@ export const SYRUP_LINE: ProductLine = {
     },
     {
       slug: "khus",
-      name: "Khus",
-      short: "KHUS",
+      name: "Synthetic Elaichi",
+      short: "ELAICHI",
       bg: "#4FAE3D",
       panel: "#70C25E",
       image: "/bottles/khus.png",
       cardImage: "/khus.png",
-      tagline: "The coolest summer classic",
+      tagline: "The fragrant dessert classic",
       description:
-        "Grassy khus (vetiver) distilled into a vivid green syrup — the sharpest cooler of Indian summers. A splash over ice with chilled water, and the heat simply gives up.",
-      pairs: ["Sharbat & coolers", "Falooda", "Ice golas"],
+        "Sweet cardamom essence simmered into a nostalgic green syrup — one spoon turns chilled milk, falooda and sharbats into a fragrant dessert.",
+      pairs: ["Chilled milk", "Falooda", "Sharbat & coolers"],
       facts: [
         { label: "Since", value: "1972" },
         { label: "Net volume", value: "700 ml" },
@@ -172,7 +174,7 @@ export const SYRUP_LINE: ProductLine = {
 export const PICKLE_LINE: ProductLine = {
   key: "pickles",
   label: "Pickles",
-  tagline: "Jar-aged in oil, the old way",
+  tagline: "Jar-aged the old way",
   heroPath: "/pickles",
   detailBase: "/pickle",
   suffix: "Pickle",
@@ -198,20 +200,21 @@ export const PICKLE_LINE: ProductLine = {
     },
     {
       slug: "mixed",
-      name: "Mixed",
-      short: "MIXED",
+      name: "Mango Chutney",
+      short: "CHUTNEY",
+      omitSuffix: true,
       bg: "#E07B39",
       panel: "#EA9558",
       image: "/pickles/mixed.png",
       cardImage: "/mixed.png",
-      tagline: "A whole garden in one jar",
+      tagline: "Sweet, spiced, spoon-ready",
       description:
-        "Mango, lime, chillies, carrot and cauliflower — every jar a crunchier, spicier mixed haul. The one pickle that never meets a leftover plate.",
+        "Slow-cooked mangoes with warming spices and a gentle sweetness — a chutney that lifts rice plates, wraps and cheese boards alike.",
       pairs: ["Rice plates", "Wraps & rolls", "Cheese boards"],
       facts: [
         { label: "Since", value: "1972" },
         { label: "Net weight", value: "400 g" },
-        { label: "Type", value: "Pickle in oil" },
+        { label: "Type", value: "Chutney" },
       ],
     },
     {
@@ -224,30 +227,30 @@ export const PICKLE_LINE: ProductLine = {
       cardImage: "/chilly.png",
       tagline: "Green heat, slow burn",
       description:
-        "Whole green chillies pickled in oil with garlic and mustard. A slow-building heat that turns simple parathas into an event.",
+        "Whole green chillies pickled with garlic and mustard. A slow-building heat that turns simple parathas into an event.",
       pairs: ["Parathas", "Fried rice", "Sandwiches"],
       facts: [
         { label: "Since", value: "1972" },
         { label: "Net weight", value: "400 g" },
-        { label: "Type", value: "Pickle in oil" },
+        { label: "Type", value: "Pickle" },
       ],
     },
     {
       slug: "lime",
-      name: "Lime",
-      short: "LIME",
+      name: "Sweet Lime",
+      short: "SWEET LIME",
       bg: "#C3CC4E",
       panel: "#D2DA72",
       image: "/pickles/lime.png",
       cardImage: "/lime.png",
       tagline: "Sun-ripened, pickle-country tang",
       description:
-        "Sun-ripened limes, salt-cured and spiced the traditional way. That sharp, mouth-watering tang that makes khichdi taste like home.",
+        "Sun-ripened sweet limes, salt-cured and spiced the traditional way. That sharp, mouth-watering tang that makes khichdi taste like home.",
       pairs: ["Khichdi", "Curd rice", "Grilled meats"],
       facts: [
         { label: "Since", value: "1972" },
         { label: "Net weight", value: "400 g" },
-        { label: "Type", value: "Pickle in oil" },
+        { label: "Type", value: "Pickle" },
       ],
     },
   ],

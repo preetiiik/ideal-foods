@@ -119,7 +119,7 @@ export default function ProductDetail({ line }: { line: ProductLine }) {
                 color: "white",
               }}
             >
-              {product.name} {line.suffix}
+              {product.name}{product.omitSuffix ? "" : ` ${line.suffix}`}
             </h1>
             <p
               className="mt-1"

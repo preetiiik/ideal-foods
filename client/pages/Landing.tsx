@@ -127,7 +127,7 @@ export default function Landing({ line = SYRUP_LINE }: { line?: ProductLine }) {
               <div className="flex flex-wrap items-center justify-center gap-5 lg:justify-end">
                 <figure
                   className="m-0 shrink-0"
-                  style={{ background: "#FFFFFF", padding: 10, borderRadius: 18, boxShadow: "0 18px 40px rgba(64,42,30,0.16)", transform: "rotate(-2deg)" }}
+                  style={{ background: "#FFFFFF", padding: 10, borderRadius: 18, boxShadow: "0 18px 40px rgba(64,42,30,0.16)" }}
                 >
                   <img
                     src="/award/npc-badge.png"
@@ -139,7 +139,7 @@ export default function Landing({ line = SYRUP_LINE }: { line?: ProductLine }) {
                 <div className="flex flex-col gap-5">
                   <figure
                     className="m-0"
-                    style={{ background: "#FFFFFF", padding: 10, borderRadius: 18, boxShadow: "0 18px 40px rgba(64,42,30,0.16)", transform: "rotate(1.5deg)" }}
+                    style={{ background: "#FFFFFF", padding: 10, borderRadius: 18, boxShadow: "0 18px 40px rgba(64,42,30,0.16)" }}
                   >
                     <img
                       src="/award/npc-award-1.png"
@@ -150,7 +150,7 @@ export default function Landing({ line = SYRUP_LINE }: { line?: ProductLine }) {
                   </figure>
                   <figure
                     className="m-0"
-                    style={{ background: "#FFFFFF", padding: 10, borderRadius: 18, boxShadow: "0 18px 40px rgba(64,42,30,0.16)", transform: "rotate(-1deg)" }}
+                    style={{ background: "#FFFFFF", padding: 10, borderRadius: 18, boxShadow: "0 18px 40px rgba(64,42,30,0.16)" }}
                   >
                     <img
                       src="/award/npc-award-2.png"

@@ -149,7 +149,7 @@ function ProductCard({
           e.currentTarget.style.filter = "brightness(1)";
         }}
       >
-        {p.name} {suffix}
+        {p.name}{p.omitSuffix ? "" : ` ${suffix}`}
       </span>
     </Link>
   );

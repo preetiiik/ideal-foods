@@ -281,7 +281,7 @@ export default function ProductCarousel({ line }: { line: ProductLine }) {
               textShadow: "0 2px 14px rgba(0,0,0,0.35), 0 1px 3px rgba(0,0,0,0.3)",
             }}
           >
-            IDEAL {active.name} {line.suffix}
+            IDEAL {active.name}{active.omitSuffix ? "" : ` ${line.suffix}`}
           </p>
           <p
             className="mb-4 hidden sm:mb-5 sm:block"
