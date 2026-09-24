@@ -1,5 +1,7 @@
 import { Link } from "react-router-dom";
 import { PRODUCT_LINES, type Product } from "@/data/products";
+import PickleJar from "./PickleJar";
+import SyrupPour from "./SyrupPour";
 
 /**
  * Blend a hex colour toward white to get a soft pastel tint.
@@ -33,7 +35,7 @@ function ProductCard({
   return (
     <Link
       to={`${detailBase}/${p.slug}`}
-      className="group flex flex-col items-center text-center"
+      className="pickle-trigger syrup-trigger group flex flex-col items-center text-center"
       style={{ textDecoration: "none" }}
       aria-label={`IDEAL ${p.name} ${suffix} — view details`}
     >
@@ -88,21 +90,9 @@ function ProductCard({
         />
 
         {/* Bottle — bobs forever, each card on its own rhythm */}
-        <img
-          src={p.cardImage ?? p.image}
-          alt={`IDEAL ${p.name} ${suffix}`}
-          className="animate-float relative z-10"
-          style={{
-            height: "92%",
-            width: "auto",
-            maxWidth: "76%",
-            objectFit: "contain",
-            filter: "drop-shadow(0 18px 24px rgba(0,0,0,0.28))",
-            animationDuration: `${3.8 + (idx % 5) * 0.4}s`,
-            animationDelay: `${-idx * 0.9}s`,
-          }}
-          draggable={false}
-        />
+        {detailBase === "/pickle" ? (
+          <PickleJar product={p} className="relative z-10" style={{ height: "92%", width: "76%", overflow: "visible", filter: "drop-shadow(0 18px 24px rgba(0,0,0,0.28))" }} />
+        ) : <SyrupPour product={p} />}
       </div>
 
       {/* Name — never wraps, so every product name sits on ONE line and
