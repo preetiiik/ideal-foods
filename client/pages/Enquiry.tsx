@@ -49,7 +49,7 @@ export default function Enquiry() {
             Enquiry
           </h1>
           <p className="body-ink animate-fade-up mx-auto mt-4 max-w-xl" style={{ fontSize: 15, lineHeight: 1.85 }}>
-            Stockists, distributors, bakeries, cafes and hotels — bring home the oldest name in syrups. Tell us what
+            Stockists, distributors, bakeries, cafes and hotels — experience syrups crafted with care since 1972. Tell us what
             you need and we'll make it happen.
           </p>
         </div>
@@ -100,6 +100,7 @@ export default function Enquiry() {
                   Prefer to talk?
                 </p>
                 <div className="mt-3 flex flex-col gap-2" style={{ fontSize: 13.5, color: "#2E1F14" }}>
+                  <span className="flex items-center gap-2.5"><Phone size={14} /> 2442621 / 2442686</span>
                   <a href="tel:+919845908686" className="flex items-center gap-2.5" style={{ color: "inherit", textDecoration: "none" }}>
                     <Phone size={14} style={{ color: "#2F6B4F" }} /> +91-9845908686
                   </a>

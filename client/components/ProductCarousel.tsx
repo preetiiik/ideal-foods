@@ -293,8 +293,7 @@ export default function ProductCarousel({ line }: { line: ProductLine }) {
               textShadow: "0 2px 12px rgba(0,0,0,0.35)",
             }}
           >
-            {active.tagline} — crafted since 1972. The flavour is rich, the finish
-            is honest. Bring home the classic. Order now.
+            {active.tagline}
           </p>
           <div className="flex gap-3">
             <button

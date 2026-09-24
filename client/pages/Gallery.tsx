@@ -1,3 +1,5 @@
+import { CATALOGUE } from "@/data/catalogue";
+import { CatalogueSection } from "@/components/CatalogueSection";
 import { Link } from "react-router-dom";
 import { ArrowUpRight } from "lucide-react";
 import { SiteFooter } from "@/components/SiteChrome";
@@ -17,21 +19,23 @@ function pastel(hex: string, amount = 0.6): string {
   return `rgb(${mix(r)}, ${mix(g)}, ${mix(b)})`;
 }
 
-/** Desktop collage (photo-wall style, like the reference): a 6-column grid where
-    every product gets an explicit cell + span — a mix of portrait, landscape,
-    square and one BIG centre tile, clustered organically. 11 slots = 11 products. */
+/** Reference layout: seven square columns, with four larger 2×2 tiles.
+ * Positions follow the reference numbers; slot 15 is the collection enquiry. */
 const MOSAIC_SPANS: { col: number; row: number; cs: number; rs: number }[] = [
-  { col: 2, row: 1, cs: 1, rs: 2 }, // Orange — portrait, top-left of centre
-  { col: 3, row: 1, cs: 1, rs: 1 }, // Pista — small square, top
-  { col: 4, row: 1, cs: 2, rs: 1 }, // Rose — landscape, top-right
-  { col: 1, row: 2, cs: 1, rs: 1 }, // Kesar — square, mid-left
-  { col: 3, row: 2, cs: 2, rs: 2 }, // Thandai — THE BIG centre tile
-  { col: 5, row: 2, cs: 1, rs: 2 }, // Khus — tall, right
-  { col: 1, row: 3, cs: 2, rs: 1 }, // Almond — wide, mid-left
-  { col: 2, row: 4, cs: 1, rs: 1 }, // Mango — square
-  { col: 3, row: 4, cs: 1, rs: 2 }, // Mixed — portrait, bottom-centre
-  { col: 4, row: 4, cs: 2, rs: 2 }, // Chilly — big tall, bottom-right
-  { col: 6, row: 4, cs: 1, rs: 1 }, // Lime — small, bottom-right corner
+  { col: 2, row: 2, cs: 2, rs: 2 },
+  { col: 2, row: 1, cs: 1, rs: 1 },
+  { col: 1, row: 2, cs: 1, rs: 1 },
+  { col: 3, row: 1, cs: 1, rs: 1 },
+  { col: 3, row: 4, cs: 2, rs: 2 },
+  { col: 4, row: 3, cs: 1, rs: 1 },
+  { col: 1, row: 3, cs: 1, rs: 1 },
+  { col: 2, row: 4, cs: 1, rs: 1 },
+  { col: 4, row: 2, cs: 1, rs: 1 },
+  { col: 5, row: 1, cs: 2, rs: 2 },
+  { col: 5, row: 5, cs: 1, rs: 1 },
+  { col: 7, row: 3, cs: 1, rs: 1 },
+  { col: 4, row: 6, cs: 1, rs: 1 },
+  { col: 7, row: 2, cs: 1, rs: 1 },
 ];
 
 export default function Gallery() {
@@ -72,7 +76,7 @@ export default function Gallery() {
             Our Products
           </h1>
           <p className="body-ink animate-fade-up mx-auto mt-4 max-w-xl" style={{ fontSize: 15, lineHeight: 1.85 }}>
-            Explore the colourful bottles and jars that have made Ideal Foods a trusted name for generations.
+            {CATALOGUE["Our Syrups"][0]}
           </p>
         </div>
       </div>
@@ -82,27 +86,25 @@ export default function Gallery() {
           <p className="script-accent" style={{ fontSize: 28 }}>Every bottle, every jar</p>
           <h2 className="display-font mt-1" style={{ fontSize: "clamp(30px, 4vw, 48px)", textTransform: "uppercase" }}>Every flavour has a story</h2>
           <p className="body-ink mt-5 max-w-sm" style={{ fontSize: 15, lineHeight: 1.85 }}>Explore the Ideal shelf in monochrome, then hover to uncover the pastel flavours behind every bottle and jar.</p>
-          <Link to="/enquiry" className="btn-solid-gold mt-7" style={{ textDecoration: "none" }}>Enquire now <ArrowUpRight size={15} strokeWidth={2.5} /></Link>
         </div>
 
-        {/* Desktop (≥1024px): photo-wall collage — mixed portrait/landscape/square
-            tiles clustered around one BIG centre tile, like the reference */}
+        {/* Desktop collage follows the supplied staggered square layout. */}
         <div
-          className="hidden w-full gap-3 lg:grid"
+          className="hidden w-full self-start gap-2 lg:grid"
           style={{
-            gridTemplateColumns: "repeat(6, minmax(0, 1fr))",
-            gridAutoRows: "clamp(64px, 7.2vw, 104px)",
+            gridTemplateColumns: "repeat(7, minmax(0, 1fr))",
+            gridTemplateRows: "repeat(6, minmax(0, 1fr))",
+            aspectRatio: "7 / 6",
             justifyContent: "center",
           }}
         >
           {GALLERY_ITEMS.map((product, idx) => {
             const span = MOSAIC_SPANS[idx];
-            if (!span) return null;
             return (
               <Link
                 key={`${product.line.key}-${product.slug}`}
                 to={`${product.line.detailBase}/${product.slug}`}
-                className="gallery-tile group relative overflow-hidden rounded-2xl"
+                className="gallery-tile group relative overflow-hidden rounded-sm border border-[#2E1F14]/20 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#2E1F14]"
                 style={{
                   backgroundColor: "rgba(255,255,255,0.66)",
                   gridColumn: `${span.col} / span ${span.cs}`,
@@ -111,11 +113,19 @@ export default function Gallery() {
                 }}
                 aria-label={`View ${product.name} ${product.line.suffix}`}
               >
-                <img src={product.cardImage ?? product.image} alt={`Ideal ${product.name} ${product.line.suffix}`} className="absolute inset-0 h-full w-full object-contain p-3 transition duration-500 ease-out group-hover:scale-110" />
-                <span className="absolute inset-x-0 bottom-0 bg-gradient-to-t from-black/55 to-transparent px-3 pb-3 pt-8 text-xs font-extrabold uppercase tracking-[0.12em] text-white opacity-0 transition-opacity duration-300 group-hover:opacity-100">{product.name}</span>
+                <img src={product.cardImage ?? product.image} alt={`Ideal ${product.name}${product.omitSuffix ? "" : ` ${product.line.suffix}`}`} className="absolute inset-0 h-full w-full object-contain p-1.5 transition duration-500 ease-out group-hover:scale-110" />
+                <span className="absolute inset-x-0 bottom-0 bg-gradient-to-t from-black/70 to-transparent px-1 pb-1 pt-4 text-[9px] font-extrabold uppercase leading-tight text-white opacity-0 transition-opacity duration-300 group-hover:opacity-100 group-focus-visible:opacity-100">{product.name}</span>
               </Link>
             );
           })}
+          <Link
+            to="/enquiry"
+            className="flex flex-col items-center justify-center gap-2 rounded-sm border border-[#2E1F14]/20 bg-[#E9B62F]/20 p-3 text-center transition-colors hover:bg-[#E9B62F]/35 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#2E1F14]"
+            style={{ gridColumn: "5 / span 2", gridRow: "3 / span 2" }}
+          >
+            <span className="display-font text-lg uppercase leading-tight">Find your<br />Ideal flavour</span>
+            <span className="flex items-center gap-1 text-[10px] font-bold uppercase tracking-wider">Enquire now <ArrowUpRight size={14} /></span>
+          </Link>
         </div>
 
         {/* Mobile / tablet: comfortable 2-per-column grid, same pastel hover tiles */}
@@ -138,6 +148,7 @@ export default function Gallery() {
           ))}
         </div>
       </section>
+      <div className="relative space-y-12 pb-20"><CatalogueSection heading="Non-Fruit Commercial Syrup Blends" /><CatalogueSection heading="Moments of Indulgence" /></div>
       <SiteFooter />
     </div>
   );

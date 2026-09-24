@@ -1,3 +1,5 @@
+import { CATALOGUE } from "@/data/catalogue";
+import { CatalogueCopy, CatalogueSection } from "@/components/CatalogueSection";
 import { Link } from "react-router-dom";
 import { ArrowRight } from "lucide-react";
 import { SiteFooter } from "@/components/SiteChrome";
@@ -10,7 +12,7 @@ import { SYRUP_LINE, PRODUCT_LINES, type ProductLine } from "@/data/products";
 
 const STATS = [
   { value: 1972, suffix: "", label: "Founded in Belgaum", accent: "#C25E3A" },
-  { value: 9, suffix: "+", label: "Signature products", accent: "#2F6B4F" },
+  { value: PRODUCT_LINES.reduce((total, line) => total + line.items.length, 0), suffix: "", label: "Signature products", accent: "#2F6B4F" },
   { value: 2, suffix: "", label: "Product lines", accent: "#C2477F" },
   { value: 1992, suffix: "", label: "NPC Award", accent: "#B97E14" },
 ];
@@ -19,10 +21,7 @@ const STATS = [
  * The exact brand copy for the "flavourful journey" section — identical on
  * both the syrup and pickle pages; only the video on the right changes.
  */
-const STORY_PARAS = [
-  "At <strong>Ideal Food Products</strong>, we take immense pride in our special range of syrups, crafted with love and attention to detail. Our syrups have found diverse applications, making them a versatile addition to various culinary creations. From delightful milkshakes to mouthwatering ice creams, from refreshing mocktails to innovative desserts, our syrups add a burst of flavour and richness to every dish.",
-  "At <strong>Ideal Food Products</strong>, quality is at the heart of everything we do. We adhere to strict quality standards throughout our production process to ensure that every bottle of syrup that leaves our facility is of the highest quality. Our state-of-the-art production unit is equipped with modern technology and operated by a team of skilled professionals who share our passion for delivering excellence.",
-];
+const STORY_PARAS = CATALOGUE["An Ideal Experience"];
 
 /** The reel shown beside the story copy — syrup video on /, pickle video on /pickles. */
 const LINE_VIDEO: Record<ProductLine["key"], { src: string }> = {
@@ -67,16 +66,15 @@ export default function Landing({ line = SYRUP_LINE }: { line?: ProductLine }) {
           {/* Our Story — copy left, neutral application tiles right */}
           <section id="story" className="relative mx-auto grid max-w-7xl items-center gap-12 px-4 sm:px-6 lg:grid-cols-2">
             <div className="relative z-10">
-              <p className="script-accent" style={{ fontSize: "clamp(30px, 4vw, 42px)" }}>Come join us</p>
+              <p className="script-accent" style={{ fontSize: "clamp(30px, 4vw, 42px)" }}>An Ideal Experience</p>
               <h2 className="display-font" style={{ fontSize: "clamp(30px, 5vw, 52px)", textTransform: "uppercase" }}>
-                In this flavourful journey!
+                The language of ingredients
               </h2>
-              <p className="body-ink mt-6" style={{ fontSize: 15.5, lineHeight: 1.9 }} dangerouslySetInnerHTML={{ __html: STORY_PARAS[0] }} />
+              <p className="body-ink mt-6" style={{ fontSize: 15.5, lineHeight: 1.9 }} >{STORY_PARAS[0]}</p>
               <p
                 className="body-ink mt-4"
                 style={{ fontSize: 15.5, lineHeight: 1.9 }}
-                dangerouslySetInnerHTML={{ __html: STORY_PARAS[1] }}
-              />
+                >{STORY_PARAS[1]}</p>
               <Link to="/about" className="mt-8 inline-block" style={{ textDecoration: "none" }}>
                 <span className="btn-outline-gold">
                   Know More About Us
@@ -114,15 +112,11 @@ export default function Landing({ line = SYRUP_LINE }: { line?: ProductLine }) {
           <section className="mx-auto max-w-7xl px-4 sm:px-6">
             <div className="grid items-center gap-10 lg:grid-cols-2 lg:gap-16">
               <div>
-                <p className="script-accent" style={{ fontSize: 30 }}>Pride of 1991</p>
+                <p className="script-accent" style={{ fontSize: 30 }}>Recognitions</p>
                 <h2 className="display-font" style={{ fontSize: "clamp(26px, 4vw, 44px)", textTransform: "uppercase" }}>
                   National Productivity Council Award
                 </h2>
-                <p className="body-ink mt-4" style={{ fontSize: 15.5, lineHeight: 1.9 }}>
-                  The National Productivity Council awarded Mr. Gururaj Lokur for Second Best Productivity Performance
-                  in Fruit and Vegetable Processing Industries, presented by the then Vice President of India,
-                  Shri Shankar Dayal Sharma, in the year 1991 — a milestone that still shapes our standards today.
-                </p>
+                <CatalogueCopy heading="Recognitions" />
               </div>
               <div className="flex flex-wrap items-center justify-center gap-5 lg:justify-end">
                 <figure
@@ -167,13 +161,12 @@ export default function Landing({ line = SYRUP_LINE }: { line?: ProductLine }) {
           {/* Our Specialities — Symphony of Flavours */}
           <section id="specialities" className="mx-auto max-w-7xl px-4 sm:px-6">
             <div className="text-center">
-              <p className="script-accent" style={{ fontSize: "clamp(28px, 3.5vw, 38px)" }}>Our Specialites</p>
+              <p className="script-accent" style={{ fontSize: "clamp(28px, 3.5vw, 38px)" }}>Our Syrups</p>
               <h2 className="display-font" style={{ fontSize: "clamp(28px, 4.5vw, 48px)", textTransform: "uppercase" }}>
                 A Symphony of Flavours
               </h2>
               <p className="body-ink mx-auto mt-4" style={{ fontSize: 15, lineHeight: 1.85, maxWidth: 640 }}>
-                Chefs and home cooks alike trust Ideal Food Products for their culinary endeavours.
-                Some of our signature items include:
+                {CATALOGUE["Our Syrups"][0]}
               </p>
             </div>
 
@@ -201,39 +194,9 @@ export default function Landing({ line = SYRUP_LINE }: { line?: ProductLine }) {
             </div>
           </section>
 
-          {/* Customer Satisfaction — open section on the beige backdrop */}
-          <section className="mx-auto w-full max-w-7xl px-4 sm:px-6">
-            <div>
-              <p className="script-accent" style={{ fontSize: 30 }}>From our kitchen to yours</p>
-              <h2 className="display-font" style={{ fontSize: "clamp(26px, 4vw, 44px)", textTransform: "uppercase" }}>
-                Customer Satisfaction
-              </h2>
-              <p className="body-ink mt-4 max-w-3xl" style={{ fontSize: 15.5, lineHeight: 1.9 }}>
-                Customer satisfaction is our ultimate goal, and we continuously strive to exceed expectations. We take
-                pride in the positive feedback we receive from our loyal customers, which motivates us to innovate and
-                create new and exciting flavours to tantalize taste buds.
-              </p>
-              <div className="mt-6 flex flex-wrap gap-3">
-                {["Quality first", "Honest ingredients", "Loved since 1972"].map((t) => (
-                  <span
-                    key={t}
-                    className="flex items-center gap-2 rounded-full bg-white/85"
-                    style={{
-                      border: "1.5px solid rgba(64,42,30,0.18)",
-                      padding: "8px 16px",
-                      fontSize: 11.5,
-                      fontWeight: 700,
-                      textTransform: "uppercase",
-                      letterSpacing: "0.14em",
-                      color: "#5C4636",
-                    }}
-                  >
-                    {t}
-                  </span>
-                ))}
-              </div>
-            </div>
-          </section>
+          <CatalogueSection heading="Honouring Nature" />
+          <CatalogueSection heading="Moments of Indulgence" />
+          <CatalogueSection heading="Experience Ideal and have an Ideal Experience" />
 
           {/* Enquiry CTA — left-aligned closing band (no form on the home page) */}
           <section className="mx-auto w-full max-w-7xl px-4 sm:px-6">

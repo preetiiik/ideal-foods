@@ -1,3 +1,5 @@
+import { CATALOGUE } from "./catalogue";
+
 export interface Product {
   slug: string;
   /** Full label name, e.g. "Non-Fruit Orange" or "Mango" */
@@ -44,21 +46,16 @@ export const SYRUP_LINE: ProductLine = {
   items: [
     {
       slug: "orange",
-      name: "Non-Fruit Orange",
+      name: "Orange",
       short: "ORANGE",
       bg: "#F4845F",
       panel: "#F79B7F",
       image: "/bottles/orange.png",
       cardImage: "/orange.png",
       tagline: "Sunshine in every pour",
-      description:
-        "Our classic since 1972 — bright, zesty orange syrup that turns ordinary glasses into celebrations. Mix with chilled water or milk for an instant burst of citrus.",
-      pairs: ["Mocktails & coolers", "Cakes & desserts", "Shakes"],
-      facts: [
-        { label: "Since", value: "1972" },
-        { label: "Net volume", value: "700 ml" },
-        { label: "Type", value: "Non-fruit syrup" },
-      ],
+      description: CATALOGUE["Orange Syrup"].join("\n\n"),
+      pairs: ["Beverages", "Desserts", "Culinary creations"],
+      facts: [{ label: "Collection", value: "Non-fruit blend" }],
     },
     {
       slug: "pista",
@@ -69,14 +66,9 @@ export const SYRUP_LINE: ProductLine = {
       image: "/bottles/pista.png",
       cardImage: "/pista.png",
       tagline: "Nutty. Green. Divine.",
-      description:
-        "Slow-roasted pistachios blended into a silky, nutty syrup. Pour over kulfi, stir into milk, or drizzle on falooda for that timeless mithai-shop flavour.",
-      pairs: ["Kulfi & falooda", "Warm milk", "Ice cream"],
-      facts: [
-        { label: "Since", value: "1972" },
-        { label: "Net volume", value: "700 ml" },
-        { label: "Type", value: "Non-fruit syrup" },
-      ],
+      description: CATALOGUE["Pista Syrup"].join("\n\n"),
+      pairs: ["Milkshakes", "Ice creams", "Fine confections"],
+      facts: [{ label: "Collection", value: "Signature syrup" }],
     },
     {
       slug: "rose",
@@ -87,68 +79,48 @@ export const SYRUP_LINE: ProductLine = {
       image: "/bottles/rose.png",
       cardImage: "/rose.png",
       tagline: "A garden in a glass",
-      description:
-        "Damask rose petals distilled into a fragrant, blushing syrup. The soul of falooda and sherbet summers — floral, soothing and unmistakably nostalgic.",
-      pairs: ["Falooda & sherbet", "Lassi", "Sorbet"],
-      facts: [
-        { label: "Since", value: "1972" },
-        { label: "Net volume", value: "700 ml" },
-        { label: "Type", value: "Non-fruit syrup" },
-      ],
+      description: CATALOGUE["Rose Syrup"].join("\n\n"),
+      pairs: ["Beverages", "Desserts", "Culinary creations"],
+      facts: [{ label: "Collection", value: "Non-fruit blend" }],
     },
     {
       slug: "badam-kesar",
-      name: "Badam Kesar",
+      name: "Exotic Badam Kesar",
       short: "KESAR",
       bg: "#E9A13B",
       panel: "#EFB45E",
       image: "/bottles/kesar.png",
       cardImage: "/kesar.png",
       tagline: "Almonds meet saffron gold",
-      description:
-        "Rich almonds steeped with strands of Kashmiri saffron. A golden, royal syrup that turns warm milk into a festive winter ritual.",
-      pairs: ["Warm milk", "Thandai", "Kheer"],
-      facts: [
-        { label: "Since", value: "1972" },
-        { label: "Net volume", value: "700 ml" },
-        { label: "Type", value: "Non-fruit syrup" },
-      ],
+      description: CATALOGUE["Exotic Badam Kesar Syrup"].join("\n\n"),
+      pairs: ["Beverages", "Desserts", "Culinary creations"],
+      facts: [{ label: "Collection", value: "Signature syrup" }],
     },
     {
       slug: "badam-thandai",
-      name: "Badam Thandai",
+      name: "Classic Thandai",
       short: "THANDAI",
       bg: "#CDA16B",
       panel: "#D9B283",
       image: "/bottles/thandai.png",
       cardImage: "/thandai.png",
       tagline: "The festival classic",
-      description:
-        "Almonds, pistachios, seeds and spice in one chilled tradition. Just mix with cold milk for Holi-ready thandai, any day of the year.",
-      pairs: ["Chilled milk", "Shakes", "Smoothie bowls"],
-      facts: [
-        { label: "Since", value: "1972" },
-        { label: "Net volume", value: "700 ml" },
-        { label: "Type", value: "Non-fruit syrup" },
-      ],
+      description: CATALOGUE["Classic Thandai Syrup"].join("\n\n"),
+      pairs: ["Chilled milk", "Desserts", "Festive creations"],
+      facts: [{ label: "Collection", value: "Signature syrup" }],
     },
     {
-      slug: "khus",
-      name: "Synthetic Elaichi",
+      slug: "elaichi",
+      name: "Elaichi",
       short: "ELAICHI",
       bg: "#4FAE3D",
       panel: "#70C25E",
-      image: "/bottles/khus.png",
-      cardImage: "/khus.png",
+      image: "/bottles/elaichi.png",
+      cardImage: "/elaichi.png",
       tagline: "The fragrant dessert classic",
-      description:
-        "Sweet cardamom essence simmered into a nostalgic green syrup — one spoon turns chilled milk, falooda and sharbats into a fragrant dessert.",
-      pairs: ["Chilled milk", "Falooda", "Sharbat & coolers"],
-      facts: [
-        { label: "Since", value: "1972" },
-        { label: "Net volume", value: "700 ml" },
-        { label: "Type", value: "Non-fruit syrup" },
-      ],
+      description: CATALOGUE["Elaichi Syrup"].join("\n\n"),
+      pairs: ["Beverages", "Desserts", "Culinary creations"],
+      facts: [{ label: "Collection", value: "Non-fruit blend" }],
     },
     {
       slug: "almond",
@@ -159,13 +131,62 @@ export const SYRUP_LINE: ProductLine = {
       image: "/bottles/almond.png",
       cardImage: "/almond.png",
       tagline: "Smooth, nutty, timeless",
-      description:
-        "Creamed almonds folded into a silky, mellow syrup that turns any glass of milk into a dessert. Gentle, comforting and loved across generations.",
-      pairs: ["Warm & cold milk", "Kheer & puddings", "Milkshakes"],
+      description: CATALOGUE["Almond Syrup"].join("\n\n"),
+      pairs: ["Chilled drinks"],
+      facts: [{ label: "Collection", value: "Signature syrup" }],
+    },
+    {
+      slug: "pineapple",
+      name: "Pineapple",
+      short: "PINEAPPLE",
+      bg: "#C79324",
+      panel: "#E5BD64",
+      image: "/bottles/pineapple.png",
+      cardImage: "/pineapple.png",
+      tagline: "Mellow tropical sweetness",
+      description: CATALOGUE["Pineapple Syrup"].join("\n\n"),
+      pairs: ["Beverages", "Desserts", "Culinary creations"],
       facts: [
-        { label: "Since", value: "1972" },
-        { label: "Net volume", value: "700 ml" },
-        { label: "Type", value: "Non-fruit syrup" },
+        {
+          label: "Collection",
+          value: "Non-fruit blend",
+        },
+      ],
+    },
+    {
+      slug: "khus",
+      name: "Khus",
+      short: "KHUS",
+      bg: "#397D59",
+      panel: "#6DA382",
+      image: "/bottles/khus.png",
+      cardImage: "/khus.png",
+      tagline: "Cool, verdant, and deeply evocative",
+      description: CATALOGUE["Khus Syrup"].join("\n\n"),
+      pairs: ["Beverages", "Desserts", "Culinary creations"],
+      facts: [
+        {
+          label: "Collection",
+          value: "Non-fruit blend",
+        },
+      ],
+    },
+    {
+      slug: "raspberry",
+      name: "Raspberry",
+      short: "RASPBERRY",
+      bg: "#B63E67",
+      panel: "#D67B97",
+      image: "/bottles/raspberry.png",
+      cardImage: "/raspberry.png",
+      tagline: "Vibrant and alluring",
+      description: CATALOGUE["Raspberry Syrup"].join("\n\n"),
+      pairs: ["Beverages", "Desserts", "Culinary creations"],
+      facts: [
+        {
+          label: "Collection",
+          value: "Non-fruit blend",
+        },
       ],
     },
   ],
@@ -261,8 +282,10 @@ export const PRODUCT_LINES: ProductLine[] = [SYRUP_LINE, PICKLE_LINE];
 export const findLine = (key?: string): ProductLine | undefined =>
   PRODUCT_LINES.find((l) => l.key === key);
 
-export const findProduct = (line: ProductLine, slug?: string): Product | undefined =>
-  line.items.find((p) => p.slug === slug);
+export const findProduct = (
+  line: ProductLine,
+  slug?: string,
+): Product | undefined => line.items.find((p) => p.slug === slug);
 
 export const detailPath = (line: ProductLine, slug: string): string =>
   `${line.detailBase}/${slug}`;

@@ -64,9 +64,21 @@ export function SiteNav() {
     };
   }, []);
 
+  useEffect(() => {
+    if (!open) return;
+    const dismiss = (event: KeyboardEvent) => {
+      if (event.key === "Escape") {
+        setOpen(false);
+        document.getElementById("site-menu-toggle")?.focus();
+      }
+    };
+    window.addEventListener("keydown", dismiss);
+    return () => window.removeEventListener("keydown", dismiss);
+  }, [open]);
+
   const heroTop = !scrolled && DARK_HERO_RE.test(location.pathname);
-  /* Home hero stays clean: logo + burger only — the full link bar returns on scroll. */
-  const heroMinimal = !scrolled && location.pathname === "/";
+  /* Every hero uses logo + burger only — the full link bar returns on scroll. */
+  const heroMinimal = !scrolled;
   const ink = heroTop ? "#FFFFFF" : "#2E1F14";
   const lineInk = heroTop ? "rgba(255,255,255,0.5)" : "rgba(46,31,20,0.35)";
 
@@ -96,7 +108,7 @@ export function SiteNav() {
           <img src="/ideal-logo.png" alt="IDEAL logo" className="brand-logo" draggable={false} />
         </Link>
 
-        {/* Desktop links — hidden on the clean home hero (burger replaces them). */}
+        {/* Desktop links — hidden on the hero (burger replaces them). */}
         {!heroMinimal && (
         <nav
           className="hidden items-center gap-7 md:flex"
@@ -231,9 +243,13 @@ export function SiteNav() {
         </nav>
         )}
 
-        {/* Burger — the single control on the clean home hero; mobile-only toggle elsewhere. */}
+        {/* Burger — the single control on the hero; mobile toggle after scrolling. */}
         <button
           className={`flex items-center justify-center ${heroMinimal ? "" : "md:hidden"}`}
+          type="button"
+          aria-expanded={open}
+          id="site-menu-toggle"
+          aria-controls="site-burger-menu"
           aria-label={open ? "Close menu" : "Open menu"}
           onClick={() => setOpen((v) => !v)}
           style={{
@@ -253,6 +269,7 @@ export function SiteNav() {
       {/* Compact dropdown card anchored under the burger — not a full-width strip */}
       {open && (
           <div
+            id="site-burger-menu"
             className="absolute right-3 top-full sm:right-5"
             style={{
               marginTop: 10,
@@ -497,6 +514,7 @@ export function SiteFooter() {
               <MapPin size={15} style={{ marginTop: 3, flexShrink: 0, color: "#F5C86A" }} />
               Ideal Food Products. 671, Khanapur Road, Udyambag, Belgaum- 590 008
             </span>
+            <span className="flex items-center gap-2.5"><Phone size={15} /> 2442621 / 2442686</span>
             <a href="tel:+919845908686" className="flex items-center gap-2.5" style={{ color: "inherit", textDecoration: "none" }}>
               <Phone size={15} style={{ flexShrink: 0, color: "#F5C86A" }} />
               +91-9845908686

@@ -133,11 +133,11 @@ export default function ProductDetail({ line }: { line: ProductLine }) {
             >
               {product.tagline}
             </p>
-            <p className="mt-4" style={{ fontSize: 15, lineHeight: 1.7, color: "rgba(0,0,0,0.78)" }}>
+            <p className="mt-4 whitespace-pre-line" style={{ fontSize: 15, lineHeight: 1.7, color: "rgba(0,0,0,0.78)" }}>
               {product.description}
             </p>
 
-            <div className="mt-6 grid grid-cols-3 gap-3">
+            <div className="mt-6 flex flex-wrap gap-3">
               {product.facts.map((f) => (
                 <div
                   key={f.label}

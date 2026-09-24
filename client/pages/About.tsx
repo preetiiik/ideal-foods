@@ -1,3 +1,5 @@
+import { CATALOGUE } from "@/data/catalogue";
+import { CatalogueCopy, CatalogueSection } from "@/components/CatalogueSection";
 import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import { ArrowRight, Award } from "lucide-react";
@@ -105,16 +107,11 @@ export default function About() {
           }}
         />
         <div className="relative mx-auto w-full max-w-7xl px-4 text-center sm:px-6" style={{ zIndex: 30 }}>
-          <p className="script-accent" style={{ fontSize: "clamp(30px, 4vw, 44px)" }}>We are the oldest manufacturers of all syrups</p>
+          <p className="script-accent" style={{ fontSize: "clamp(30px, 4vw, 44px)" }}>We are Fifty and more</p>
           <h1 className="animate-fade-up display-font mt-2" style={{ fontSize: "clamp(32px, 6vw, 64px)", textTransform: "uppercase" }}>
             History of Ideal Foods
           </h1>
-          <p className="body-ink animate-fade-up mx-auto mt-4 max-w-2xl" style={{ fontSize: 15, lineHeight: 1.9 }}>
-            At Ideal Food Products, we take pride in our rich heritage and dedication to delivering exceptional taste
-            and quality to our customers. Founded in 1972 by Mr. G.G. Lokur, a visionary with a background in Food
-            Technology, our journey began with a focus on manufacturing syrups. Over the years, we have grown into a
-            well-known brand, trusted for our mouthwatering offerings.
-          </p>
+          <p className="body-ink animate-fade-up mx-auto mt-4 max-w-2xl" style={{ fontSize: 15, lineHeight: 1.9 }}>{CATALOGUE["We are Fifty and more"][0]}</p>
         </div>
       </div>
 
@@ -163,14 +160,7 @@ export default function About() {
               <h2 className="display-font" style={{ fontSize: "clamp(28px, 4.5vw, 48px)", textTransform: "uppercase" }}>
                 Mr. G.G. Lokur
               </h2>
-              <p className="mt-4 max-w-3xl" style={{ fontSize: 15.5, lineHeight: 1.9, color: "#31473A" }}>
-                Mr. G.G. Lokur, the Managing Partner, is the driving force behind Ideal Food Products. His journey started
-                with graduation from Karnataka University in 1958, followed by completing a Food Technology course from
-                UDCT, Mumbai, in 1961. With extensive experience gained from leading food companies — such as M/S Sathe
-                Biscuits &amp; Chocolate Co Ltd, C.F.T.R.I Mysore, Dr. Writers Chocolate &amp; Canning Co. Ltd, Power
-                Cables Pvt Ltd Nadiad, and Tim Tom Food Products — Mr. Lokur embarked on the mission to establish his own
-                unit in Belgaum.
-              </p>
+              <p className="mt-4 max-w-3xl" style={{ fontSize: 15.5, lineHeight: 1.9, color: "#31473A" }}>{CATALOGUE["We are Fifty and more"][1]}</p>
               <p className="mt-4 max-w-3xl" style={{ fontSize: 15.5, lineHeight: 1.9, color: "#31473A" }}>
                 Ideal Food Products was honoured with the National Productivity Council Award in 1992. The prestigious award
                 was received by the Managing Partner, Shri. G.G. Lokur, at the hands of the then Honorable Vice President,
@@ -249,16 +239,8 @@ export default function About() {
               <h2 className="display-font" style={{ fontSize: "clamp(26px, 4vw, 44px)", textTransform: "uppercase" }}>
                 Early Challenges and Triumphs
               </h2>
-              <p className="mt-4 max-w-3xl" style={{ fontSize: 15.5, lineHeight: 1.9, color: "#5A3050" }}>
-                The journey of Ideal Food Products started humbly, in a small room at Goods Shed Road near the railway
-                station. Mr. Lokur personally looked after all aspects of the business — from production and marketing to
-                the procurement of raw materials.
-              </p>
-              <p className="mt-4 max-w-3xl" style={{ fontSize: 15.5, lineHeight: 1.9, color: "#5A3050" }}>
-                Mr. Lokur's unwavering commitment to quality and perseverance paid off. Despite the obstacles, he
-                courageously continued to focus on delivering top-notch products, eventually capturing a significant
-                market share.
-              </p>
+              <p className="mt-4 max-w-3xl" style={{ fontSize: 15.5, lineHeight: 1.9, color: "#5A3050" }}>{CATALOGUE["We are Fifty and more"][2]}</p>
+              <p className="mt-4 max-w-3xl" style={{ fontSize: 15.5, lineHeight: 1.9, color: "#5A3050" }}>{CATALOGUE["We are Fifty and more"][4]}</p>
             </div>
         </BandCard>
 
@@ -273,12 +255,7 @@ export default function About() {
               <h2 className="display-font" style={{ fontSize: "clamp(26px, 4vw, 44px)", textTransform: "uppercase" }}>
                 Next Generation
               </h2>
-              <p className="mt-4 max-w-3xl" style={{ fontSize: 15.5, lineHeight: 1.9, color: "#2E4A5C" }}>
-                The legacy of Ideal Food Products continues with Mr. Samir Lokur, son of Mr. G.G. Lokur. After completing
-                his graduation, Mr. Samir Lokur joined the company and took keen interest in its day-to-day activities.
-                His dedication and vision led to the expansion of production and a strong push to increase our market
-                share further.
-              </p>
+              <p className="mt-4 max-w-3xl" style={{ fontSize: 15.5, lineHeight: 1.9, color: "#2E4A5C" }}>{CATALOGUE["We are Fifty and more"][3]}</p>
               <div className="mt-8 flex flex-wrap gap-4">
                 <Link to="/gallery" style={{ textDecoration: "none" }}>
                   <span className="btn-outline-gold">
@@ -304,6 +281,7 @@ export default function About() {
         </BandCard>
       </div>
 
+      <div className="relative space-y-12 pb-20"><CatalogueSection heading="Honouring Nature" /><section className="mx-auto max-w-7xl px-4 sm:px-6"><h2 className="display-font mb-6 text-3xl">An Ideal Experience</h2><CatalogueCopy heading="An Ideal Experience" start={2} /></section></div>
       <SiteFooter />
     </div>
   );

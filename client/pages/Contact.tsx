@@ -5,6 +5,7 @@ import ContactForm from "@/components/ContactForm";
 import FitText from "@/components/FitText";
 
 const INFO = [
+  { icon: Phone, label: "Telephone", value: "2442621 / 2442686", href: undefined, accent: "#C25E3A" },
   {
     icon: Phone,
     label: "Phone",
