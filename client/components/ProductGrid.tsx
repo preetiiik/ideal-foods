@@ -35,7 +35,7 @@ function ProductCard({
   return (
     <Link
       to={`${detailBase}/${p.slug}`}
-      className="pickle-trigger syrup-trigger group flex flex-col items-center text-center"
+      className="syrup-trigger group flex flex-col items-center text-center"
       style={{ textDecoration: "none" }}
       aria-label={`IDEAL ${p.name} ${suffix} — view details`}
     >
@@ -49,11 +49,11 @@ function ProductCard({
           aria-hidden
           className="arch-breathe absolute left-1/2 top-1/2"
           style={{
-            width: "70%",
-            height: "84%",
+            width: detailBase === "/pickle" ? "94%" : "70%",
+            height: detailBase === "/pickle" ? "100%" : "84%",
             borderRadius: 999,
             overflow: "hidden",
-            background: `linear-gradient(180deg, ${pastel(p.bg, 0.42)} 0%, ${pastel(p.bg, 0.68)} 100%)`,
+            background: `linear-gradient(180deg, ${pastel(p.cardBg ?? p.bg, 0.42)} 0%, ${pastel(p.cardBg ?? p.bg, 0.68)} 100%)`,
             boxShadow: "0 24px 48px rgba(64,42,30,0.14)",
           }}
         >

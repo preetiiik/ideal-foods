@@ -13,6 +13,8 @@ export interface Product {
   image: string;
   /** Clean label-shot bottle used on grid cards (Specialities/Gallery); falls back to `image`. */
   cardImage?: string;
+  /** Optional decorative background colour for product cards. */
+  cardBg?: string;
   tagline: string;
   description: string;
   pairs: string[];
@@ -100,6 +102,7 @@ export const SYRUP_LINE: ProductLine = {
       slug: "badam-thandai",
       name: "Classic Thandai",
       short: "THANDAI",
+      cardBg: "#E8BC42",
       bg: "#CDA16B",
       panel: "#D9B283",
       image: "/bottles/thandai.png",
