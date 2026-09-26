@@ -37,7 +37,8 @@ export default function Landing({ line = SYRUP_LINE }: { line?: ProductLine }) {
   return (
     <div className="relative w-full overflow-hidden" style={{ fontFamily: "'Nunito Sans', sans-serif", color: "#2E1F14" }}>
       {/* The site opens straight into the animated product showcase (syrups on /, pickles on /pickles) */}
-      <ProductCarousel line={line} />
+      {/* Reset slide and animation state when switching between product lines. */}
+      <ProductCarousel key={line.key} line={line} />
 
       {/* ---------- Content sections on the ONE plain beige backdrop ---------- */}
       <div className="relative w-full" style={{ color: "#2E1F14" }}>

@@ -443,7 +443,7 @@ export function SiteFooter() {
       <div className="relative mx-auto grid max-w-7xl gap-10 px-4 py-14 sm:grid-cols-2 sm:px-6 lg:grid-cols-4">
         {/* Brand + quick links */}
         <div>
-          <Link to="/" aria-label="IDEAL Food Products — Home" style={{ display: "inline-block", textDecoration: "none" }}>
+          <Link to="/" onClick={() => window.scrollTo({ top: 0, left: 0, behavior: "instant" as ScrollBehavior })} aria-label="IDEAL Food Products — Home" style={{ display: "inline-block", textDecoration: "none" }}>
             <img src="/ideal-logo.png" alt="IDEAL logo" className="brand-logo-footer" draggable={false} />
           </Link>
           <p className="mt-4" style={{ fontSize: 13, lineHeight: 1.7, color: "rgba(255,255,255,0.72)", maxWidth: 260 }}>
