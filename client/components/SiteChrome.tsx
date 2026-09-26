@@ -567,7 +567,7 @@ export function SiteFooter() {
           style={{ fontSize: 11.5, color: "rgba(255,255,255,0.55)", letterSpacing: "0.06em" }}
         >
           <span>
-            © {new Date().getFullYear()} Ideal Food Products, Belgaum. All Rights Reserved. Designed by{" "}
+            © {new Date().getFullYear()} Ideal Food Products, Belgaum. All Rights Reserved. Powered by{" "}
             <a
               href="https://spitel.com"
               target="_blank"
