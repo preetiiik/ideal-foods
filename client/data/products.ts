@@ -1,6 +1,7 @@
 import { CATALOGUE } from "./catalogue";
 
 export interface Product {
+  premium?: boolean;
   slug: string;
   /** Full label name, e.g. "Non-Fruit Orange" or "Mango" */
   name: string;
@@ -61,11 +62,12 @@ export const SYRUP_LINE: ProductLine = {
     },
     {
       slug: "pista",
+      premium: true,
       name: "Pista",
       short: "PISTA",
       bg: "#6BBF7A",
       panel: "#85CC92",
-      image: "/bottles/pista.png",
+      image: "/bottles/pista1.png",
       cardImage: "/pista.png",
       tagline: "Nutty. Green. Divine.",
       description: CATALOGUE["Pista Syrup"].join("\n\n"),
@@ -87,11 +89,12 @@ export const SYRUP_LINE: ProductLine = {
     },
     {
       slug: "badam-kesar",
+      premium: true,
       name: "Exotic Badam Kesar",
       short: "KESAR",
       bg: "#E9A13B",
       panel: "#EFB45E",
-      image: "/bottles/kesar.png",
+      image: "/bottles/kesar1.png",
       cardImage: "/kesar.png",
       tagline: "Almonds meet saffron gold",
       description: CATALOGUE["Exotic Badam Kesar Syrup"].join("\n\n"),
@@ -100,12 +103,13 @@ export const SYRUP_LINE: ProductLine = {
     },
     {
       slug: "badam-thandai",
-      name: "Classic Thandai",
+      premium: true,
+      name: "Badam Thandai",
       short: "THANDAI",
       cardBg: "#E8BC42",
       bg: "#CDA16B",
       panel: "#D9B283",
-      image: "/bottles/thandai.png",
+      image: "/bottles/thandai1.png",
       cardImage: "/thandai.png",
       tagline: "The festival classic",
       description: CATALOGUE["Classic Thandai Syrup"].join("\n\n"),
@@ -127,11 +131,12 @@ export const SYRUP_LINE: ProductLine = {
     },
     {
       slug: "almond",
+      premium: true,
       name: "Almond",
       short: "ALMOND",
       bg: "#EDCB92",
       panel: "#F3DAAA",
-      image: "/bottles/almond.png",
+      image: "/bottles/almond1.png",
       cardImage: "/almond.png",
       tagline: "Smooth, nutty, timeless",
       description: CATALOGUE["Almond Syrup"].join("\n\n"),
@@ -194,6 +199,16 @@ export const SYRUP_LINE: ProductLine = {
     },
   ],
 };
+
+// Premium syrups lead the carousel, shelf and gallery.
+const PREMIUM_ORDER = ["badam-thandai", "pista", "badam-kesar", "almond"];
+SYRUP_LINE.items.sort((a, b) => {
+  const rank = (p: Product) => {
+    const index = PREMIUM_ORDER.indexOf(p.slug);
+    return index < 0 ? PREMIUM_ORDER.length : index;
+  };
+  return rank(a) - rank(b);
+});
 
 export const PICKLE_LINE: ProductLine = {
   key: "pickles",

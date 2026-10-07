@@ -1,3 +1,4 @@
+import PremiumBadge from "@/components/PremiumBadge";
 import { CATALOGUE } from "@/data/catalogue";
 import { CatalogueSection } from "@/components/CatalogueSection";
 import { Link } from "react-router-dom";
@@ -23,18 +24,18 @@ function pastel(hex: string, amount = 0.6): string {
  * Positions follow the reference numbers; slot 15 is the collection enquiry. */
 const MOSAIC_SPANS: { col: number; row: number; cs: number; rs: number }[] = [
   { col: 2, row: 2, cs: 2, rs: 2 },
+  { col: 5, row: 1, cs: 2, rs: 2 },
+  { col: 3, row: 4, cs: 2, rs: 2 },
+  { col: 1, row: 5, cs: 2, rs: 2 },
   { col: 2, row: 1, cs: 1, rs: 1 },
   { col: 1, row: 2, cs: 1, rs: 1 },
   { col: 3, row: 1, cs: 1, rs: 1 },
-  { col: 3, row: 4, cs: 2, rs: 2 },
   { col: 4, row: 3, cs: 1, rs: 1 },
   { col: 1, row: 3, cs: 1, rs: 1 },
   { col: 2, row: 4, cs: 1, rs: 1 },
   { col: 4, row: 2, cs: 1, rs: 1 },
-  { col: 5, row: 1, cs: 2, rs: 2 },
   { col: 5, row: 5, cs: 1, rs: 1 },
   { col: 7, row: 3, cs: 1, rs: 1 },
-  { col: 4, row: 6, cs: 1, rs: 1 },
   { col: 7, row: 2, cs: 1, rs: 1 },
 ];
 
@@ -85,7 +86,7 @@ export default function Gallery() {
         <div className="lg:pt-8">
           <p className="script-accent" style={{ fontSize: 28 }}>Every bottle, every jar</p>
           <h2 className="display-font mt-1" style={{ fontSize: "clamp(30px, 4vw, 48px)", textTransform: "uppercase" }}>Every flavour has a story</h2>
-          <p className="body-ink mt-5 max-w-sm" style={{ fontSize: 15, lineHeight: 1.85 }}>Explore the Ideal shelf in monochrome, then hover to uncover the pastel flavours behind every bottle and jar.</p>
+          <p className="body-ink mt-5 max-w-sm" style={{ fontSize: 15, lineHeight: 1.85 }}>Discover our Premium Collection in the four larger photo tiles: Badam Thandai, Pista, Badam Kesar and Almond. Explore every bottle and jar below.</p>
         </div>
 
         {/* Desktop collage follows the supplied staggered square layout. */}
@@ -104,6 +105,7 @@ export default function Gallery() {
               <Link
                 key={`${product.line.key}-${product.slug}`}
                 to={`${product.line.detailBase}/${product.slug}`}
+                data-premium={product.premium || undefined}
                 className="gallery-tile group relative overflow-hidden rounded-sm border border-[#2E1F14]/20 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#2E1F14]"
                 style={{
                   backgroundColor: "rgba(255,255,255,0.66)",
@@ -113,8 +115,9 @@ export default function Gallery() {
                 }}
                 aria-label={`View ${product.name} ${product.line.suffix}`}
               >
-                <img src={product.cardImage ?? product.image} alt={`Ideal ${product.name}${product.omitSuffix ? "" : ` ${product.line.suffix}`}`} className="absolute inset-0 h-full w-full object-contain p-1.5 transition duration-500 ease-out group-hover:scale-110" />
-                <span className="absolute inset-x-0 bottom-0 bg-gradient-to-t from-black/70 to-transparent px-1 pb-1 pt-4 text-[9px] font-extrabold uppercase leading-tight text-white opacity-0 transition-opacity duration-300 group-hover:opacity-100 group-focus-visible:opacity-100">{product.name}</span>
+                {product.premium && <span className="absolute left-2 top-2 z-10"><PremiumBadge /></span>}
+              <img src={product.cardImage ?? product.image} alt={`Ideal ${product.name}${product.omitSuffix ? "" : ` ${product.line.suffix}`}`} className="absolute inset-0 h-full w-full object-contain p-1.5 transition duration-500 ease-out group-hover:scale-110" />
+                <span className="absolute inset-x-0 bottom-0 bg-gradient-to-t from-black/70 to-transparent px-1 pb-1 pt-4 text-[9px] font-extrabold uppercase leading-tight text-white transition-opacity duration-300 opacity-100 group-focus-visible:opacity-100">{product.name}</span>
               </Link>
             );
           })}
@@ -134,7 +137,8 @@ export default function Gallery() {
             <Link
               key={`${product.line.key}-${product.slug}`}
               to={`${product.line.detailBase}/${product.slug}`}
-              className="gallery-tile group relative overflow-hidden rounded-2xl"
+              data-premium={product.premium || undefined}
+                className="gallery-tile group relative overflow-hidden rounded-2xl"
               style={{
                 backgroundColor: "rgba(255,255,255,0.66)",
                 aspectRatio: "1 / 1",
@@ -142,8 +146,9 @@ export default function Gallery() {
               }}
               aria-label={`View ${product.name} ${product.line.suffix}`}
             >
+              {product.premium && <span className="absolute left-2 top-2 z-10"><PremiumBadge /></span>}
               <img src={product.cardImage ?? product.image} alt={`Ideal ${product.name} ${product.line.suffix}`} className="absolute inset-0 h-full w-full object-contain p-3 transition duration-500 ease-out group-hover:scale-110" />
-              <span className="absolute inset-x-0 bottom-0 bg-gradient-to-t from-black/55 to-transparent px-3 pb-3 pt-8 text-xs font-extrabold uppercase tracking-[0.12em] text-white opacity-0 transition-opacity duration-300 group-hover:opacity-100">{product.name}</span>
+              <span className="absolute inset-x-0 bottom-0 bg-gradient-to-t from-black/55 to-transparent px-3 pb-3 pt-8 text-xs font-extrabold uppercase tracking-[0.12em] text-white transition-opacity duration-300 opacity-100">{product.name}</span>
             </Link>
           ))}
         </div>

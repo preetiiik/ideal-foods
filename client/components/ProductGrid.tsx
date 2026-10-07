@@ -150,11 +150,27 @@ export default function ProductGrid({ lineKey }: { lineKey: "syrups" | "pickles"
   const line = PRODUCT_LINES.find((l) => l.key === lineKey);
   if (!line) return null;
 
-  return (
-    <div className="mt-10 grid grid-cols-2 gap-x-6 gap-y-12 sm:gap-x-10 lg:grid-cols-4">
-      {line.items.map((p: Product, i: number) => (
+  const premium = line.items.filter((p) => p.premium);
+  const classics = line.items.filter((p) => !p.premium);
+  const cards = (items: Product[]) => (
+    <div className="mt-8 grid grid-cols-2 gap-x-6 gap-y-12 sm:gap-x-10 lg:grid-cols-4">
+      {items.map((p, i) => (
         <ProductCard key={p.slug} p={p} suffix={line.suffix} detailBase={line.detailBase} idx={i} />
       ))}
+    </div>
+  );
+  return (
+    <div className="mt-10">
+      {premium.length > 0 && (
+        <section className="rounded-3xl border border-[#B98A36]/40 bg-[#FFF8E8]/80 px-4 py-8 sm:px-8" aria-label="Premium syrup collection">
+          <p className="text-center text-xs font-bold uppercase tracking-[0.24em] text-[#8A601C]">Our finest pours</p>
+          <h4 className="display-font mt-2 text-center text-3xl text-[#302316]">Premium Collection</h4>
+          <p className="mt-3 text-center text-sm text-[#5C4636]">Four special syrups for moments of indulgence.</p>
+          {cards(premium)}
+        </section>
+      )}
+      {premium.length > 0 && <h4 className="display-font mt-12 text-2xl">Explore More Syrups</h4>}
+      {cards(classics)}
     </div>
   );
 }

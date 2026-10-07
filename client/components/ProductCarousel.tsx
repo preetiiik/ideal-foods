@@ -1,3 +1,4 @@
+import PremiumBadge from "./PremiumBadge";
 import { useEffect, useRef, useState } from "react";
 import { Link } from "react-router-dom";
 import { ArrowLeft, ArrowRight } from "lucide-react";
@@ -281,6 +282,7 @@ export default function ProductCarousel({ line }: { line: ProductLine }) {
               textShadow: "0 2px 14px rgba(0,0,0,0.35), 0 1px 3px rgba(0,0,0,0.3)",
             }}
           >
+            {active.premium && <span className="mb-2 block"><PremiumBadge /></span>}
             IDEAL {active.name}{active.omitSuffix ? "" : ` ${line.suffix}`}
           </p>
           <p

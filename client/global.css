@@ -485,3 +485,12 @@
     white-space: pre;
   }
 }
+
+/* Premium photos stay in colour so the collection stands out at a glance. */
+.gallery-tile[data-premium] {
+  border: 1px solid #B98A36;
+  background: #FFF8E8 !important;
+}
+.gallery-tile[data-premium] img {
+  filter: none;
+}

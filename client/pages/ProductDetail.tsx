@@ -1,3 +1,4 @@
+import PremiumBadge from "@/components/PremiumBadge";
 import { useEffect, useState } from "react";
 import { Link, useParams } from "react-router-dom";
 import { ArrowLeft } from "lucide-react";
@@ -108,6 +109,7 @@ export default function ProductDetail({ line }: { line: ProductLine }) {
             >
               IDEAL · SINCE 1972
             </p>
+            {product.premium && <div className="mt-3"><PremiumBadge /></div>}
             <h1
               className="animate-fade-up mt-2"
               style={{
