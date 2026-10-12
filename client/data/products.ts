@@ -14,6 +14,8 @@ export interface Product {
   image: string;
   /** Clean label-shot bottle used on grid cards (Specialities/Gallery); falls back to `image`. */
   cardImage?: string;
+  /** Already transparent jar photos do not need the legacy SVG mask. */
+  unmaskedJar?: boolean;
   /** Optional decorative background colour for product cards. */
   cardBg?: string;
   tagline: string;
@@ -219,6 +221,36 @@ export const PICKLE_LINE: ProductLine = {
   suffix: "Pickle",
   accent: "#E9B62F",
   items: [
+    {
+      slug: "lime-in-oil",
+      name: "Lime",
+      short: "LIME",
+      bg: "#D4B83F",
+      panel: "#E1CB69",
+      image: "/pickles/lime1.png",
+      cardImage: "/lime1.png",
+      unmaskedJar: true,
+      tagline: "Bright tang, bold spice",
+      description:
+        "Tangy lime pickle in oil, bringing a bright, spicy accompaniment to everyday meals.",
+      pairs: ["Dal-chawal", "Parathas", "Curd rice"],
+      facts: [{ label: "Type", value: "Pickle in oil" }],
+    },
+    {
+      slug: "mixed-in-oil",
+      name: "Mixed",
+      short: "MIXED",
+      bg: "#CD6937",
+      panel: "#DF8A60",
+      image: "/pickles/mixed1.png",
+      cardImage: "/mixed1.png",
+      unmaskedJar: true,
+      tagline: "A colourful mix with a spicy kick",
+      description:
+        "A mixed pickle in oil with mango, lime and chillies, adding tang and spice to your favourite meals.",
+      pairs: ["Rice plates", "Parathas", "Khichdi"],
+      facts: [{ label: "Type", value: "Pickle in oil" }],
+    },
     {
       slug: "mango",
       name: "Mango",

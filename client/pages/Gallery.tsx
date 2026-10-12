@@ -37,6 +37,8 @@ const MOSAIC_SPANS: { col: number; row: number; cs: number; rs: number }[] = [
   { col: 5, row: 5, cs: 1, rs: 1 },
   { col: 7, row: 3, cs: 1, rs: 1 },
   { col: 7, row: 2, cs: 1, rs: 1 },
+  { col: 7, row: 4, cs: 1, rs: 1 },
+  { col: 7, row: 5, cs: 1, rs: 1 },
 ];
 
 export default function Gallery() {

@@ -8,6 +8,16 @@ export default function PickleJar({ product, className, style }: {
   style?: CSSProperties;
 }) {
   const id = useId().replace(/:/g, "");
+  if (product.unmaskedJar) {
+    return (
+      <img
+        src={product.cardImage ?? product.image}
+        alt={`Ideal ${product.name}${product.omitSuffix ? "" : " Pickle"}`}
+        className={`pickle-jar ${className ?? ""}`}
+        style={{ ...style, objectFit: "contain" }}
+      />
+    );
+  }
   const tall = product.slug === "chilly" || product.slug === "lime";
   const seam = product.slug === "chilly" ? 262 : product.slug === "lime" ? 240 : product.slug === "mixed" ? 215 : 228;
   const src = product.cardImage ?? product.image;

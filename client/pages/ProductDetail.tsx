@@ -182,7 +182,7 @@ export default function ProductDetail({ line }: { line: ProductLine }) {
             <p style={{ fontSize: 11, fontWeight: 700, textTransform: "uppercase", letterSpacing: "0.2em", color: "rgba(255,255,255,0.75)" }}>
               More {line.label.toLowerCase()}
             </p>
-            <div className="mt-4 flex flex-wrap items-end justify-center gap-4 sm:gap-6">
+            <div className={line.key === "pickles" ? "mx-auto mt-4 grid max-w-lg grid-cols-2 items-end justify-items-center gap-4 sm:grid-cols-3 sm:gap-6" : "mt-4 flex flex-wrap items-end justify-center gap-4 sm:gap-6"}>
               {others.map((p) => (
                 <Link
                   key={p.slug}
