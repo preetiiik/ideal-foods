@@ -41,7 +41,7 @@ function ProductCard({
     >
       {/* Arch panel + bottle */}
       <div
-        className="relative flex w-full items-center justify-center"
+        className="relative flex w-full shrink-0 items-center justify-center"
         style={{ aspectRatio: "1 / 1.12" }}
       >
         {/* Pastel arch (stadium) panel — breathes forever */}
@@ -91,7 +91,7 @@ function ProductCard({
 
         {/* Bottle — bobs forever, each card on its own rhythm */}
         {detailBase === "/pickle" ? (
-          <PickleJar product={p} className="relative z-10" style={{ height: "92%", width: "76%", overflow: "visible", filter: "drop-shadow(0 18px 24px rgba(0,0,0,0.28))" }} />
+          <PickleJar product={p} className="absolute z-10" style={{ height: p.unmaskedJar ? "106.72%" : "92%", width: p.unmaskedJar ? "88.16%" : "76%", overflow: "visible", filter: "drop-shadow(0 18px 24px rgba(0,0,0,0.28))" }} />
         ) : <SyrupPour product={p} />}
       </div>
 
